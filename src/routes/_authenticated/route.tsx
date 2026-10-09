@@ -36,9 +36,7 @@ const NAV = [
 ] as const;
 const MOBILE = ["/dashboard", "/transactions", "/budgets", "/objectifs"];
 
-function Loading() {
-  return <div className="grid min-h-[60vh] place-items-center"><div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" /></div>;
-}
+import { FullPageLoader as Loading } from "@/components/Spinner";
 
 function Layout() {
   const path = useRouterState({ select: (s) => s.location.pathname });
