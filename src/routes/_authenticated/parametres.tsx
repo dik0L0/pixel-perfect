@@ -28,13 +28,13 @@ function Page() {
   const save = async () => {
     const { first_name, last_name, employment, salary, secondary_income, other_income, payday, fixed_charges, main_goal, alert_threshold, alerts_enabled } = s;
     const { error } = await supabase.from("profiles").update({ first_name, last_name, employment, salary, secondary_income, other_income, payday, fixed_charges, main_goal, alert_threshold, alerts_enabled }).eq("id", profile.id);
-    if (error) return toast.error(error.message);
+    if ($1) { toast.error($2); return; }
     await inv("profile"); toast.success("Paramètres enregistrés");
   };
   const toggleDark = (v: boolean) => { setDark(v); document.documentElement.classList.toggle("dark", v); localStorage.setItem("dola-theme", v ? "dark" : "light"); };
   const changePw = async () => {
     const { error } = await supabase.auth.updateUser({ password: pw.next, current_password: pw.cur } as never);
-    if (error) return toast.error(error.message);
+    if ($1) { toast.error($2); return; }
     setPw({ cur: "", next: "" }); toast.success("Mot de passe modifié");
   };
   const exportData = () => {
