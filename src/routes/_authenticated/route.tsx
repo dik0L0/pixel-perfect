@@ -93,11 +93,11 @@ function Shell({ path }: { path: string }) {
         <TxDialog trigger={<button aria-label="Ajouter une transaction" className="grid h-14 w-14 place-items-center rounded-full bg-gradient-primary text-primary-foreground shadow-glow"><Plus className="h-6 w-6" /></button>} />
       </div>
       <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t bg-card/95 px-1 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
-        {NAV.filter((n) => MOBILE.includes(n.to)).map(({ to, short, label, icon: Icon }) => (
+        {NAV.filter((n) => MOBILE.includes(n.to)).map((n) => { const { to, label, icon: Icon } = n; const short = "short" in n ? n.short : undefined; return (
           <Link key={to} to={to} className={cn("flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium text-muted-foreground", path === to && "text-primary")}>
             <Icon className="h-5 w-5" />{short ?? label}
           </Link>
-        ))}
+        ); })}
         <Sheet>
           <SheetTrigger className="flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium text-muted-foreground">
             <MoreHorizontal className="h-5 w-5" />Plus
