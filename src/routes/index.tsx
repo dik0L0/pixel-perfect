@@ -41,10 +41,10 @@ function Index() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-24">
           <div className="animate-rise">
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"><Sparkles className="h-3.5 w-3.5" />Pensé pour le Gabon · 100 % en FCFA</span>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">Prenez enfin le contrôle de votre argent.</h1>
-            <p className="mt-5 max-w-lg text-lg text-muted-foreground">Suivez vos dépenses, anticipez vos fins de mois et atteignez vos objectifs financiers grâce à votre assistant budgétaire intelligent.</p>
+            <h1 className="mt-5 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">Suivez votre argent. <span className="text-primary">Simplement.</span></h1>
+            <p className="mt-5 max-w-lg text-lg text-muted-foreground">Notez vos dépenses en 3 secondes, voyez où part chaque franc et arrivez sereinement à la fin du mois. 🌱</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild variant="hero" size="lg" className="h-12 px-6"><Link to="/auth" search={{ mode: "signup" }}>Créer mon compte</Link></Button>
+              <Button asChild variant="hero" size="lg" className="h-12 px-6"><Link to="/auth" search={{ mode: "signup" }}>Commencer gratuitement</Link></Button>
               <Button asChild variant="outline" size="lg" className="h-12 rounded-xl px-6"><Link to="/fonctionnalites">Découvrir l'application</Link></Button>
             </div>
             <div className="mt-8 flex flex-wrap gap-5 text-sm text-muted-foreground">
@@ -53,8 +53,9 @@ function Index() {
             </div>
           </div>
           <div className="relative animate-rise [animation-delay:150ms]">
-            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-primary opacity-15 blur-3xl" />
-            <DashboardPreview />
+            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-primary opacity-20 blur-3xl" />
+            <img src={heroImg} alt="Une utilisatrice suit son budget sur son téléphone à Libreville" width={1024} height={1152} className="aspect-[4/5] w-full max-w-md rounded-[2rem] object-cover shadow-soft sm:ml-auto" />
+            <div className="absolute -bottom-8 -left-2 w-64 sm:left-0 sm:w-72"><DashboardPreview /></div>
           </div>
         </div>
       </section>
