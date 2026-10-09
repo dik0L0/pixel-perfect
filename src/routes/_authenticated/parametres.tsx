@@ -81,7 +81,7 @@ function Page() {
         </Panel>
         <Panel title="Notifications">
           <Label>Seuil d'alerte budget : {s.alert_threshold} %</Label>
-          <Slider className="mt-3" min={50} max={100} step={5} value={[s.alert_threshold]} onValueChange={([v]) => setS({ ...s, alert_threshold: v })} />
+          <Slider className="mt-3" min={50} max={100} step={5} value={[s.alert_threshold]} onValueChange={([v]) => setS({ ...s, alert_threshold: v ?? 80 })} />
           <div className="mt-4 space-y-2">{Object.entries(ALERT_TYPES).map(([k, l]) => (
             <label key={k} className="flex items-center justify-between text-sm">{l}<Switch checked={s.alerts_enabled?.[k] !== false} onCheckedChange={(v) => setS({ ...s, alerts_enabled: { ...s.alerts_enabled, [k]: v } })} /></label>
           ))}</div>
