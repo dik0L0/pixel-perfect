@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet, redirect, useNavigate, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Link, Navigate, Outlet, redirect, useNavigate, useRouterState } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import {
@@ -51,10 +51,7 @@ function Shell({ path }: { path: string }) {
   const { data: profile } = useSuspenseQuery(profileQuery);
   const navigate = useNavigate();
   const qc = useQueryClient();
-  if (!profile.onboarded) {
-    navigate({ to: "/onboarding", replace: true });
-    return <Loading />;
-  }
+  if (!profile.onboarded) return <Navigate to="/onboarding" replace />;
   const signOut = async () => {
     await qc.cancelQueries();
     qc.clear();
