@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import {
   Banknote, BookOpen, ChevronLeft, ChevronRight, Copy, DollarSign, Heart,
-  Home, PiggyBank, Pencil, Plus, ShoppingBag, Trash2, Users, Utensils, Car, Wifi,
+  Home, PiggyBank, Pencil, Plus, ShoppingBag, Ticket, Trash2, Users, Utensils, Car, Wifi,
 } from "lucide-react";
 import { supabase, useFinance, useInvalidate } from "@/lib/data";
 import { EXPENSE_CATEGORIES, FIXED_CHARGES, budgetColor, byCategory, fcfa, inMonth, monthKey, monthLabel, shiftMonth } from "@/lib/finance";
