@@ -7,6 +7,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { profileQuery } from "@/lib/data";
 import { Logo } from "@/components/Logo";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 import { TxDialog } from "@/components/TxDialog";
 import { Plus } from "lucide-react";
@@ -71,6 +72,7 @@ function Shell({ path }: { path: string }) {
             </Link>
           ))}
         </nav>
+        <div className="mb-3 flex justify-end px-1"><ThemeToggle className="border-sidebar-border bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground" /></div>
         <div className="rounded-xl bg-sidebar-accent p-3 text-xs">
           <p className="font-semibold text-sidebar-accent-foreground">{profile.first_name} {profile.last_name}</p>
           <p className="truncate opacity-70">{profile.email}</p>
@@ -80,7 +82,10 @@ function Shell({ path }: { path: string }) {
 
       <header className="sticky top-0 z-30 flex items-center justify-between border-b bg-background/85 px-4 py-3 backdrop-blur lg:hidden">
         <Logo />
-        <Link to="/alertes" className="rounded-full p-2 hover:bg-muted" aria-label="Alertes"><Bell className="h-5 w-5" /></Link>
+        <div className="flex items-center gap-1">
+          <ThemeToggle className="border-0 bg-transparent" />
+          <Link to="/alertes" className="rounded-full p-2 hover:bg-muted" aria-label="Alertes"><Bell className="h-5 w-5" /></Link>
+        </div>
       </header>
 
       <main className="pb-24 lg:pb-10 lg:pl-64">
