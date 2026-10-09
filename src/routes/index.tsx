@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bell, Bot, Coins, LineChart, PiggyBank, ShieldCheck, Smartphone, Sparkles } from "lucide-react";
+import { Bell, Bot, Coins, LineChart, PiggyBank, ShieldCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/marketing";
 import { DashboardPreview } from "@/components/DashboardPreview";
@@ -47,9 +47,8 @@ function Index() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="hero" size="lg" className="h-12 px-6"><Link to="/suivre-mon-argent">Suivre mon argent</Link></Button>
             </div>
-            <div className="mt-8 flex flex-wrap gap-5 text-sm text-muted-foreground">
+            <div className="mt-8 text-sm text-muted-foreground">
               <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-success" />Aucun code PIN demandé</span>
-              <span className="flex items-center gap-2"><Smartphone className="h-4 w-4 text-primary" />Airtel & Moov Money</span>
             </div>
           </div>
           <div className="relative animate-rise [animation-delay:150ms]">
