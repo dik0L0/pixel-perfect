@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { Logo } from "./Logo";
+import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 
@@ -14,7 +15,10 @@ export function SiteHeader() {
           <Link to="/comment-ca-marche" className="hover:text-foreground">Comment ça marche</Link>
           <Link to="/auth" search={{ mode: "login" }} className="hover:text-foreground">Connexion</Link>
         </nav>
-        <Button asChild variant="hero" size="sm" className="h-9 px-4"><Link to="/auth" search={{ mode: "signup" }}>Commencer gratuitement</Link></Button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Button asChild variant="hero" size="sm" className="h-9 px-4"><Link to="/auth" search={{ mode: "signup" }}>Commencer gratuitement</Link></Button>
+        </div>
       </div>
     </header>
   );
