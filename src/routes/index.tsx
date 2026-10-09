@@ -28,38 +28,86 @@ const FAQ: [string, string][] = [
   ["Puis-je l'utiliser sur mon téléphone ?", "Oui, DOLA est conçu d'abord pour le mobile et fonctionne dans votre navigateur."],
 ];
 
+const TICKER = ["Suivez votre argent", "100 % en FCFA", "Pensé pour le Gabon", "Zéro code PIN demandé", "Prévisions jusqu'à la paie"];
+
 function Index() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <section className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-24">
-          <div className="animate-rise">
-            <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"><Sparkles className="h-3.5 w-3.5" />Pensé pour le Gabon · 100 % en FCFA</span>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">Suivez votre argent. <span className="text-primary">Simplement.</span></h1>
-            <p className="mt-5 max-w-lg text-lg text-muted-foreground">DOLA vous aide à comprendre vos dépenses, anticiper vos besoins et garder le contrôle de votre budget jusqu'à la prochaine paie <Rocket className="inline h-5 w-5 text-primary" /></p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild variant="hero" size="lg" className="h-12 px-6"><Link to="/suivre-mon-argent">Suivre mon argent</Link></Button>
+
+      {/* ——— Hero éditorial ——— */}
+      <section className="relative overflow-hidden dot-grid">
+        <div className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+        <div className="mx-auto max-w-6xl px-4 pb-20 pt-12 sm:px-6 lg:pt-20">
+          <div className="grid items-end gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="animate-rise">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary">
+                <Sparkles className="h-3.5 w-3.5" />Pensé pour le Gabon · 100 % en FCFA
+              </span>
+              <h1 className="mt-6 font-display text-[13vw] font-extrabold leading-[0.95] tracking-tight sm:text-7xl lg:text-[5.5rem]">
+                Suivez<br />votre <span className="text-primary">argent.</span>
+              </h1>
+              <p className="mt-6 max-w-md text-lg text-muted-foreground">
+                DOLA vous aide à comprendre vos dépenses, anticiper vos besoins et garder le contrôle de votre budget jusqu'à la prochaine paie <Rocket className="inline h-5 w-5 text-primary" />
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Button asChild variant="hero" size="lg" className="h-13 rounded-full px-7 text-base">
+                  <Link to="/suivre-mon-argent">Suivre mon argent<ArrowRight className="h-4 w-4" /></Link>
+                </Button>
+                <span className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <ShieldCheck className="h-4 w-4 text-success" />Aucun code PIN demandé
+                </span>
+              </div>
             </div>
-            <div className="mt-8 text-sm text-muted-foreground">
-              <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-success" />Aucun code PIN demandé</span>
+
+            <div className="relative animate-rise [animation-delay:150ms]">
+              <div className="absolute -inset-4 -z-10 rounded-t-full bg-gradient-primary opacity-15 blur-2xl" />
+              <img
+                src={heroImg}
+                alt="Une utilisatrice suit son budget sur son téléphone à Libreville"
+                width={1024}
+                height={1152}
+                className="mx-auto aspect-[4/5] w-full max-w-sm rounded-t-[10rem] rounded-b-[2rem] border-4 border-card object-cover shadow-soft"
+              />
+              <div className="absolute -bottom-6 -left-2 w-60 sm:-left-8 sm:w-72"><DashboardPreview /></div>
+              <div className="absolute -right-1 top-10 rounded-2xl bg-night px-4 py-3 text-night-foreground shadow-soft sm:-right-4">
+                <p className="text-[11px] uppercase tracking-widest opacity-60">Reste ce mois</p>
+                <p className="font-display text-xl font-bold text-primary-glow">+ 87 500 <span className="text-xs font-medium">FCFA</span></p>
+              </div>
             </div>
           </div>
-          <div className="relative animate-rise [animation-delay:150ms]">
-            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-primary opacity-20 blur-3xl" />
-            <img src={heroImg} alt="Une utilisatrice suit son budget sur son téléphone à Libreville" width={1024} height={1152} className="aspect-[4/5] w-full max-w-md rounded-[2rem] object-cover shadow-soft sm:ml-auto" />
-            <div className="absolute -bottom-8 -left-2 w-64 sm:left-0 sm:w-72"><DashboardPreview /></div>
+        </div>
+
+        {/* ——— Bandeau défilant ——— */}
+        <div className="border-y border-primary/15 bg-primary/5 py-3">
+          <div className="flex w-max animate-marquee gap-10 whitespace-nowrap px-4">
+            {[...TICKER, ...TICKER].map((t, i) => (
+              <span key={i} className="flex items-center gap-10 text-sm font-semibold uppercase tracking-widest text-primary">
+                {t}<span className="text-primary/40">●</span>
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* ——— Pourquoi DOLA : bleu nuit, grands chiffres ——— */}
       <section className="bg-gradient-night text-night-foreground">
-        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
-          <h2 className="text-3xl font-bold sm:text-4xl">Pourquoi utiliser DOLA ?</h2>
-          <p className="mx-auto mt-4 max-w-2xl opacity-75">Parce qu'un simple carnet de dépenses ne suffit pas. DOLA agit comme un copilote : il analyse, prévoit et vous conseille pour prendre de meilleures décisions.</p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {[["3 scénarios", "de prévision du solde"], ["8 types", "d'alertes automatiques"], ["0 FCFA", "pour commencer"]].map(([a, b]) => (
-              <div key={a} className="rounded-2xl border border-sidebar-border bg-sidebar-accent/40 p-6"><p className="font-display text-3xl font-bold">{a}</p><p className="mt-1 text-sm opacity-70">{b}</p></div>
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-glow">Pourquoi DOLA</p>
+          <h2 className="mt-4 max-w-2xl font-display text-3xl font-bold leading-tight sm:text-5xl">
+            Un carnet de dépenses ne suffit plus. <span className="text-primary-glow">DOLA est votre copilote.</span>
+          </h2>
+          <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-sidebar-border bg-sidebar-border sm:grid-cols-3">
+            {[
+              ["01", "3 scénarios", "de prévision du solde jusqu'à la prochaine paie : optimiste, réaliste, prudent."],
+              ["02", "8 types", "d'alertes automatiques avant que le budget ne dérape."],
+              ["03", "0 FCFA", "pour commencer. Vos chiffres restent les vôtres."],
+            ].map(([n, a, b]) => (
+              <div key={n} className="group bg-night/40 p-8 transition-colors hover:bg-sidebar-accent/50">
+                <p className="font-display text-sm font-bold text-primary-glow">{n}</p>
+                <p className="mt-6 font-display text-5xl font-extrabold tracking-tight">{a}</p>
+                <p className="mt-3 text-sm leading-relaxed opacity-70">{b}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -67,11 +115,16 @@ function Index() {
 
       <ProjectTeaser />
 
+      {/* ——— FAQ ——— */}
       <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
-        <h2 className="text-center text-3xl font-bold">Questions fréquentes</h2>
-        <Accordion type="single" collapsible className="mt-8">
+        <p className="text-center text-sm font-semibold uppercase tracking-[0.3em] text-primary">On vous répond</p>
+        <h2 className="mt-3 text-center font-display text-3xl font-bold sm:text-4xl">Questions fréquentes</h2>
+        <Accordion type="single" collapsible className="mt-10">
           {FAQ.map(([q, a]) => (
-            <AccordionItem key={q} value={q}><AccordionTrigger className="text-left">{q}</AccordionTrigger><AccordionContent className="text-muted-foreground">{a}</AccordionContent></AccordionItem>
+            <AccordionItem key={q} value={q}>
+              <AccordionTrigger className="text-left text-base font-semibold">{q}</AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">{a}</AccordionContent>
+            </AccordionItem>
           ))}
         </Accordion>
       </section>
@@ -87,14 +140,16 @@ function ProjectTeaser() {
 
   return (
     <section className="mx-auto max-w-4xl px-4 pt-20 sm:px-6">
-      <div className="relative overflow-hidden rounded-[2rem] bg-gradient-night p-8 text-night-foreground shadow-soft sm:p-12">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-night p-8 text-night-foreground shadow-soft sm:p-12">
         <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/30 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-primary/20 blur-3xl" />
         <div className="relative">
           <div className="flex flex-wrap items-center justify-between gap-6">
             <div className="max-w-md">
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary-foreground"><Target className="h-3.5 w-3.5" />Suivi de projet</span>
-              <h2 className="mt-4 text-3xl font-bold sm:text-4xl">Un projet en tête ?</h2>
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary-foreground">
+                <Target className="h-3.5 w-3.5" />Suivi de projet
+              </span>
+              <h2 className="mt-4 font-display text-3xl font-bold sm:text-4xl">Un projet en tête ?</h2>
               <p className="mt-3 opacity-75">Machine à laver, voyage, rentrée scolaire… Fixez votre objectif et voyez combien il faut, combien il manque et quand vous l'atteindrez.</p>
             </div>
             <button
@@ -102,7 +157,7 @@ function ProjectTeaser() {
               onClick={() => setOpen((o) => !o)}
               aria-expanded={open}
               aria-label={open ? "Fermer" : "Créer un projet"}
-              className={`grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gradient-primary text-primary-foreground shadow-elegant transition-transform duration-300 hover:scale-105 ${open ? "rotate-45" : ""}`}
+              className={`grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gradient-primary text-primary-foreground shadow-glow transition-transform duration-300 hover:scale-105 ${open ? "rotate-45" : ""}`}
             >
               <Plus className="h-8 w-8" />
             </button>
