@@ -66,6 +66,8 @@ function Index() {
         </div>
       </section>
 
+      <ProjectTeaser />
+
       <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
         <h2 className="text-center text-3xl font-bold">Questions fréquentes</h2>
         <Accordion type="single" collapsible className="mt-8">
