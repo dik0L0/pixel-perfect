@@ -47,9 +47,8 @@ function Index() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="hero" size="lg" className="h-12 px-6"><Link to="/suivre-mon-argent">Suivre mon argent</Link></Button>
             </div>
-            <div className="mt-8 flex flex-wrap gap-5 text-sm text-muted-foreground">
+            <div className="mt-8 text-sm text-muted-foreground">
               <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-success" />Aucun code PIN demandé</span>
-              <span className="flex items-center gap-2"><Smartphone className="h-4 w-4 text-primary" />Airtel & Moov Money</span>
             </div>
           </div>
           <div className="relative animate-rise [animation-delay:150ms]">
