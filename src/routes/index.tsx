@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bell, Bot, Coins, LineChart, PiggyBank, Rocket, ShieldCheck, Sparkles } from "lucide-react";
+import { Bell, PiggyBank, Rocket, ShieldCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/marketing";
 import { DashboardPreview } from "@/components/DashboardPreview";
@@ -17,14 +17,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const SECTIONS = [
-  { icon: Coins, title: "Suivez chaque franc CFA.", text: "Espèces, Airtel Money, Moov Money, carte ou virement : enregistrez et catégorisez toutes vos opérations en quelques secondes." },
-  { icon: LineChart, title: "Anticipez vos dépenses.", text: "Notre moteur de prévision estime votre solde jusqu'à la prochaine paie selon trois scénarios — optimiste, réaliste et prudent." },
-  { icon: Bell, title: "Recevez des alertes intelligentes.", text: "Budget presque épuisé, dépense inhabituelle, objectif en retard : DOLA vous prévient avant qu'il ne soit trop tard." },
-  { icon: PiggyBank, title: "Épargnez pour vos projets.", text: "Rentrée scolaire, terrain, voyage ou fonds d'urgence : suivez votre progression et l'effort mensuel nécessaire." },
-  { icon: Bot, title: "Découvrez votre assistant financier.", text: "Posez vos questions en français : « Puis-je acheter un ordinateur ? ». Les calculs sont faits par DOLA, l'IA les explique." },
-];
 
 const FAQ: [string, string][] = [
   ["DOLA est-il gratuit ?", "Oui, l'offre Gratuite couvre revenus, dépenses, tableau de bord et budgets. Les offres Premium ajoutent prévisions, simulations et assistant IA."],
@@ -70,16 +62,6 @@ function Index() {
           </div>
         </div>
       </section>
-
-      <section className="mx-auto max-w-6xl space-y-6 px-4 py-20 sm:px-6">
-        {SECTIONS.map(({ icon: Icon, title, text }, i) => (
-          <div key={title} className={`card-surface flex flex-col gap-5 p-7 sm:flex-row sm:items-center ${i % 2 ? "sm:flex-row-reverse sm:text-right" : ""}`}>
-            <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-primary text-primary-foreground shadow-glow"><Icon className="h-6 w-6" /></div>
-            <div><h3 className="text-xl font-bold">{title}</h3><p className="mt-2 text-muted-foreground">{text}</p></div>
-          </div>
-        ))}
-      </section>
-
 
       <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
         <h2 className="text-center text-3xl font-bold">Questions fréquentes</h2>
