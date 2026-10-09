@@ -46,8 +46,6 @@ function Index() {
             <p className="mt-5 max-w-lg text-lg text-muted-foreground">Notez vos dépenses en 3 secondes, voyez où part chaque franc et arrivez sereinement à la fin du mois. 🌱</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="hero" size="lg" className="h-12 px-6"><Link to="/suivre-mon-argent">Suivre mon argent</Link></Button>
-              <Button asChild variant="outline" size="lg" className="h-12 rounded-xl px-6"><Link to="/auth" search={{ mode: "signup" }}>Commencer gratuitement</Link></Button>
-              <Button asChild variant="outline" size="lg" className="h-12 rounded-xl px-6"><Link to="/fonctionnalites">Découvrir l'application</Link></Button>
             </div>
             <div className="mt-8 flex flex-wrap gap-5 text-sm text-muted-foreground">
               <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-success" />Aucun code PIN demandé</span>
