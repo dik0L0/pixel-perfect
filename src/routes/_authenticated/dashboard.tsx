@@ -8,7 +8,7 @@ import { TxDialog } from "@/components/TxDialog";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
-  head: () => ({ meta: [{ title: "Tableau de bord — MONÉO" }, { name: "description", content: "Votre situation financière du jour." }] }),
+  head: () => ({ meta: [{ title: "Tableau de bord — DOLA" }, { name: "description", content: "Votre situation financière du jour." }] }),
   component: Dashboard,
 });
 

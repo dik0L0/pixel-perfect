@@ -12,7 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export const Route = createFileRoute("/_authenticated/objectifs")({
-  head: () => ({ meta: [{ title: "Mes objectifs — MONÉO" }, { name: "description", content: "Vos objectifs d'épargne." }] }),
+  head: () => ({ meta: [{ title: "Mes objectifs — DOLA" }, { name: "description", content: "Vos objectifs d'épargne." }] }),
   component: Page,
 });
 

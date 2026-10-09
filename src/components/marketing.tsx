@@ -27,7 +27,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 sm:grid-cols-4">
         <div className="sm:col-span-2">
           <Logo light />
-          <p className="mt-3 max-w-xs text-sm opacity-70">Maîtrisez votre argent. Préparez votre avenir. Conçu à Libreville pour le Gabon et bientôt toute la zone CEMAC.</p>
+          <p className="mt-3 max-w-xs text-sm opacity-70">Suivez votre argent. Conçu à Libreville pour le Gabon et bientôt toute la zone CEMAC.</p>
         </div>
         <div className="space-y-2 text-sm opacity-80">
           <p className="font-semibold opacity-100">Produit</p>
@@ -42,7 +42,7 @@ export function SiteFooter() {
           <p>Vos données vous appartiennent</p>
         </div>
       </div>
-      <p className="border-t border-sidebar-border py-5 text-center text-xs opacity-50">© {new Date().getFullYear()} MONÉO. Tous droits réservés.</p>
+      <p className="border-t border-sidebar-border py-5 text-center text-xs opacity-50">© {new Date().getFullYear()} DOLA. Tous droits réservés.</p>
     </footer>
   );
 }

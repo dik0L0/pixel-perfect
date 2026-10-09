@@ -7,7 +7,7 @@ import { PageHeader, Panel, Empty } from "@/components/ui-kit";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/previsions")({
-  head: () => ({ meta: [{ title: "Prévisions intelligentes — MONÉO" }, { name: "description", content: "Estimation de votre situation future." }] }),
+  head: () => ({ meta: [{ title: "Prévisions intelligentes — DOLA" }, { name: "description", content: "Estimation de votre situation future." }] }),
   component: Page,
 });
 

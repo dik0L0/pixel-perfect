@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/fonctionnalites")({
   head: () => ({
     meta: [
-      { title: "Fonctionnalités — MONÉO" },
+      { title: "Fonctionnalités — DOLA" },
       { name: "description", content: "Transactions, budgets, statistiques, prévisions, simulations, objectifs, alertes et assistant IA." },
-      { property: "og:title", content: "Fonctionnalités MONÉO" },
+      { property: "og:title", content: "Fonctionnalités DOLA" },
       { property: "og:description", content: "Tout ce qu'il faut pour piloter votre argent en FCFA." },
     ],
   }),

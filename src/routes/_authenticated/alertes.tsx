@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/alertes")({
-  head: () => ({ meta: [{ title: "Alertes — MONÉO" }, { name: "description", content: "Votre centre de notifications." }] }),
+  head: () => ({ meta: [{ title: "Alertes — DOLA" }, { name: "description", content: "Votre centre de notifications." }] }),
   component: Page,
 });
 

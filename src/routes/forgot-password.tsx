@@ -9,9 +9,9 @@ import { Logo } from "@/components/Logo";
 export const Route = createFileRoute("/forgot-password")({
   head: () => ({
     meta: [
-      { title: "Mot de passe oublié — MONÉO" },
-      { name: "description", content: "Réinitialisez le mot de passe de votre compte MONÉO." },
-      { property: "og:title", content: "Mot de passe oublié — MONÉO" },
+      { title: "Mot de passe oublié — DOLA" },
+      { name: "description", content: "Réinitialisez le mot de passe de votre compte DOLA." },
+      { property: "og:title", content: "Mot de passe oublié — DOLA" },
       { property: "og:description", content: "Recevez un lien de réinitialisation par email." },
     ],
   }),

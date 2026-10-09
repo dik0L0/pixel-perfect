@@ -12,7 +12,7 @@ import { Logo } from "@/components/Logo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/onboarding")({
-  head: () => ({ meta: [{ title: "Configuration — MONÉO" }, { name: "description", content: "Configurez votre profil financier." }] }),
+  head: () => ({ meta: [{ title: "Configuration — DOLA" }, { name: "description", content: "Configurez votre profil financier." }] }),
   component: Onboarding,
 });
 

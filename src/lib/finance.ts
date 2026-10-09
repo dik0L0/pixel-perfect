@@ -1,4 +1,4 @@
-// Moteur financier déterministe de MONÉO. Toutes les valeurs affichées
+// Moteur financier déterministe de DOLA. Toutes les valeurs affichées
 // (et transmises à l'assistant IA) proviennent de ces fonctions.
 
 export type TxType = "revenu" | "depense";

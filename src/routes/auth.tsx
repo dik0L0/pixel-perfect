@@ -12,9 +12,9 @@ export const Route = createFileRoute("/auth")({
   validateSearch: (s: Record<string, unknown>) => ({ mode: s.mode === "signup" ? "signup" : "login" }) as { mode: "login" | "signup" },
   head: () => ({
     meta: [
-      { title: "Connexion — MONÉO" },
-      { name: "description", content: "Connectez-vous ou créez votre compte MONÉO gratuitement." },
-      { property: "og:title", content: "Connexion — MONÉO" },
+      { title: "Connexion — DOLA" },
+      { name: "description", content: "Connectez-vous ou créez votre compte DOLA gratuitement." },
+      { property: "og:title", content: "Connexion — DOLA" },
       { property: "og:description", content: "Accédez à votre copilote financier personnel." },
     ],
   }),
@@ -62,10 +62,10 @@ function AuthPage() {
       <div className="hidden flex-col justify-between bg-gradient-night p-12 text-night-foreground lg:flex">
         <Logo light />
         <div>
-          <h2 className="text-4xl font-bold leading-tight">Maîtrisez votre argent.<br />Préparez votre avenir.</h2>
+          <h2 className="text-4xl font-bold leading-tight">Suivez votre argent.<br />Préparez votre avenir.</h2>
           <p className="mt-4 max-w-md opacity-75">Suivez chaque franc CFA, anticipez vos fins de mois et atteignez vos objectifs.</p>
         </div>
-        <p className="text-xs opacity-50">MONÉO ne vous demandera jamais votre code PIN Mobile Money ni votre mot de passe bancaire.</p>
+        <p className="text-xs opacity-50">DOLA ne vous demandera jamais votre code PIN Mobile Money ni votre mot de passe bancaire.</p>
       </div>
       <div className="flex items-center justify-center p-6">
         <div className="w-full max-w-sm animate-rise">
@@ -78,7 +78,7 @@ function AuthPage() {
           ) : (
             <>
               <h1 className="text-2xl font-bold">{signup ? "Créer mon compte" : "Bon retour 👋"}</h1>
-              <p className="mt-1 text-sm text-muted-foreground">{signup ? "Gratuit, sans carte bancaire." : "Connectez-vous à votre espace MONÉO."}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{signup ? "Gratuit, sans carte bancaire." : "Connectez-vous à votre espace DOLA."}</p>
               <Button variant="outline" className="mt-6 h-11 w-full rounded-xl" onClick={google}>
                 <svg viewBox="0 0 24 24" className="h-4 w-4"><path fill="currentColor" d="M21.35 11.1h-9.17v2.92h5.28c-.23 1.4-1.66 4.1-5.28 4.1-3.18 0-5.77-2.63-5.77-5.87s2.59-5.87 5.77-5.87c1.81 0 3.02.77 3.71 1.43l2.53-2.43C16.8 3.9 14.7 3 12.18 3 7.1 3 3 7.03 3 12.25S7.1 21.5 12.18 21.5c5.27 0 8.76-3.7 8.76-8.92 0-.6-.06-1.05-.15-1.48z" /></svg>
                 Continuer avec Google

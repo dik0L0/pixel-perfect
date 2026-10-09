@@ -8,7 +8,7 @@ import { PageHeader, Panel, tooltipStyle } from "@/components/ui-kit";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Route = createFileRoute("/_authenticated/statistiques")({
-  head: () => ({ meta: [{ title: "Statistiques — MONÉO" }, { name: "description", content: "Analyse de vos finances." }] }),
+  head: () => ({ meta: [{ title: "Statistiques — DOLA" }, { name: "description", content: "Analyse de vos finances." }] }),
   component: Page,
 });
 

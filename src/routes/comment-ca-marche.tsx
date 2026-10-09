@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/comment-ca-marche")({
   head: () => ({
     meta: [
-      { title: "Comment ça marche — MONÉO" },
-      { name: "description", content: "Créez votre compte, configurez vos revenus et charges, puis laissez MONÉO vous guider." },
-      { property: "og:title", content: "Comment fonctionne MONÉO" },
+      { title: "Comment ça marche — DOLA" },
+      { name: "description", content: "Créez votre compte, configurez vos revenus et charges, puis laissez DOLA vous guider." },
+      { property: "og:title", content: "Comment fonctionne DOLA" },
       { property: "og:description", content: "4 étapes pour reprendre le contrôle de votre budget." },
     ],
   }),
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/comment-ca-marche")({
 const STEPS = [
   ["Créez votre compte", "Email ou Google, en moins d'une minute."],
   ["Décrivez votre situation", "Salaire, date de paie, loyer, électricité, scolarité… L'onboarding prend 3 minutes."],
-  ["Recevez votre budget", "MONÉO génère automatiquement un premier budget prévisionnel adapté."],
+  ["Recevez votre budget", "DOLA génère automatiquement un premier budget prévisionnel adapté."],
   ["Suivez et anticipez", "Enregistrez vos dépenses, recevez des alertes et consultez vos prévisions."],
 ];
 

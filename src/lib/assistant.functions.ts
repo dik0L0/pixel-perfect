@@ -40,8 +40,8 @@ export const askAssistant = createServerFn({ method: "POST" })
       `Analyses : ${insights(txs).join(" ")}`,
       `Alertes : ${computeAlerts(txs, budgets, goals, profile).map((a) => a.message).join(" ")}`,
     ].join("\n");
-    const system = `Tu es l'assistant financier de MONÉO (Gabon, Franc CFA). Réponds en français, de façon concise, bienveillante et concrète.
-RÈGLES STRICTES : n'utilise QUE les chiffres des FAITS ci-dessous, calculés par le moteur MONÉO. N'invente jamais de montant. Si une donnée manque, dis-le. Présente les prévisions comme des estimations. Ne demande jamais de code PIN ni de mot de passe bancaire.
+    const system = `Tu es l'assistant financier de DOLA (Gabon, Franc CFA). Réponds en français, de façon concise, bienveillante et concrète.
+RÈGLES STRICTES : n'utilise QUE les chiffres des FAITS ci-dessous, calculés par le moteur DOLA. N'invente jamais de montant. Si une donnée manque, dis-le. Présente les prévisions comme des estimations. Ne demande jamais de code PIN ni de mot de passe bancaire.
 FAITS DE L'UTILISATEUR :\n${facts}`;
     const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",

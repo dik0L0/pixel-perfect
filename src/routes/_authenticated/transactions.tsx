@@ -14,7 +14,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/transactions")({
-  head: () => ({ meta: [{ title: "Transactions — MONÉO" }, { name: "description", content: "Vos revenus et dépenses." }] }),
+  head: () => ({ meta: [{ title: "Transactions — DOLA" }, { name: "description", content: "Vos revenus et dépenses." }] }),
   component: Page,
 });
 
@@ -86,7 +86,7 @@ function Page() {
           <Input type="number" placeholder="Montant min" value={min} onChange={(e) => setMin(e.target.value)} className="h-10 rounded-xl" />
           <Input type="number" placeholder="Montant max" value={max} onChange={(e) => setMax(e.target.value)} className="h-10 rounded-xl" />
         </div>
-        <p className="mt-3 text-xs text-muted-foreground">Format CSV : date;type;montant;categorie;description;moyen. MONÉO ne demande jamais de code PIN ni de mot de passe bancaire.</p>
+        <p className="mt-3 text-xs text-muted-foreground">Format CSV : date;type;montant;categorie;description;moyen. DOLA ne demande jamais de code PIN ni de mot de passe bancaire.</p>
         <ul className="mt-4 divide-y">
           {list.map((t) => (
             <li key={t.id} className="flex items-center gap-3 py-3">

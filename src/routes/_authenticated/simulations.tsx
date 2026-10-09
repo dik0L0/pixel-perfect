@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/simulations")({
-  head: () => ({ meta: [{ title: "Simulations — MONÉO" }, { name: "description", content: "Simulez un achat avant de le faire." }] }),
+  head: () => ({ meta: [{ title: "Simulations — DOLA" }, { name: "description", content: "Simulez un achat avant de le faire." }] }),
   component: Page,
 });
 

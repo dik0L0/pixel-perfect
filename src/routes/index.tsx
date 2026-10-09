@@ -8,9 +8,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "MONÉO — Maîtrisez votre argent. Préparez votre avenir." },
+      { title: "DOLA — Suivez votre argent." },
       { name: "description", content: "Suivez vos dépenses en FCFA, anticipez vos fins de mois et atteignez vos objectifs avec votre assistant budgétaire intelligent." },
-      { property: "og:title", content: "MONÉO — Votre copilote financier au Gabon" },
+      { property: "og:title", content: "DOLA — Votre copilote financier au Gabon" },
       { property: "og:description", content: "Budgets, prévisions, alertes et épargne en Franc CFA." },
     ],
   }),
@@ -20,17 +20,17 @@ export const Route = createFileRoute("/")({
 const SECTIONS = [
   { icon: Coins, title: "Suivez chaque franc CFA.", text: "Espèces, Airtel Money, Moov Money, carte ou virement : enregistrez et catégorisez toutes vos opérations en quelques secondes." },
   { icon: LineChart, title: "Anticipez vos dépenses.", text: "Notre moteur de prévision estime votre solde jusqu'à la prochaine paie selon trois scénarios — optimiste, réaliste et prudent." },
-  { icon: Bell, title: "Recevez des alertes intelligentes.", text: "Budget presque épuisé, dépense inhabituelle, objectif en retard : MONÉO vous prévient avant qu'il ne soit trop tard." },
+  { icon: Bell, title: "Recevez des alertes intelligentes.", text: "Budget presque épuisé, dépense inhabituelle, objectif en retard : DOLA vous prévient avant qu'il ne soit trop tard." },
   { icon: PiggyBank, title: "Épargnez pour vos projets.", text: "Rentrée scolaire, terrain, voyage ou fonds d'urgence : suivez votre progression et l'effort mensuel nécessaire." },
-  { icon: Bot, title: "Découvrez votre assistant financier.", text: "Posez vos questions en français : « Puis-je acheter un ordinateur ? ». Les calculs sont faits par MONÉO, l'IA les explique." },
+  { icon: Bot, title: "Découvrez votre assistant financier.", text: "Posez vos questions en français : « Puis-je acheter un ordinateur ? ». Les calculs sont faits par DOLA, l'IA les explique." },
 ];
 
 const FAQ = [
-  ["MONÉO est-il gratuit ?", "Oui, l'offre Gratuite couvre revenus, dépenses, tableau de bord et budgets. Les offres Premium ajoutent prévisions, simulations et assistant IA."],
+  ["DOLA est-il gratuit ?", "Oui, l'offre Gratuite couvre revenus, dépenses, tableau de bord et budgets. Les offres Premium ajoutent prévisions, simulations et assistant IA."],
   ["Mes données sont-elles en sécurité ?", "Vos données sont chiffrées et accessibles uniquement par vous. Nous ne les revendons jamais."],
-  ["Faut-il connecter mon compte Mobile Money ?", "Non. Vous saisissez ou importez vos opérations. MONÉO ne vous demandera jamais votre code PIN ni votre mot de passe bancaire."],
+  ["Faut-il connecter mon compte Mobile Money ?", "Non. Vous saisissez ou importez vos opérations. DOLA ne vous demandera jamais votre code PIN ni votre mot de passe bancaire."],
   ["Les prévisions sont-elles fiables ?", "Ce sont des estimations basées sur votre historique. Les hypothèses utilisées sont toujours affichées."],
-  ["Puis-je l'utiliser sur mon téléphone ?", "Oui, MONÉO est conçu d'abord pour le mobile et fonctionne dans votre navigateur."],
+  ["Puis-je l'utiliser sur mon téléphone ?", "Oui, DOLA est conçu d'abord pour le mobile et fonctionne dans votre navigateur."],
 ];
 
 function Index() {
@@ -61,8 +61,8 @@ function Index() {
 
       <section className="bg-gradient-night text-night-foreground">
         <div className="mx-auto max-w-6xl px-6 py-16 text-center">
-          <h2 className="text-3xl font-bold sm:text-4xl">Pourquoi utiliser MONÉO ?</h2>
-          <p className="mx-auto mt-4 max-w-2xl opacity-75">Parce qu'un simple carnet de dépenses ne suffit pas. MONÉO agit comme un copilote : il analyse, prévoit et vous conseille pour prendre de meilleures décisions.</p>
+          <h2 className="text-3xl font-bold sm:text-4xl">Pourquoi utiliser DOLA ?</h2>
+          <p className="mx-auto mt-4 max-w-2xl opacity-75">Parce qu'un simple carnet de dépenses ne suffit pas. DOLA agit comme un copilote : il analyse, prévoit et vous conseille pour prendre de meilleures décisions.</p>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {[["3 scénarios", "de prévision du solde"], ["8 types", "d'alertes automatiques"], ["0 FCFA", "pour commencer"]].map(([a, b]) => (
               <div key={a} className="rounded-2xl border border-sidebar-border bg-sidebar-accent/40 p-6"><p className="font-display text-3xl font-bold">{a}</p><p className="mt-1 text-sm opacity-70">{b}</p></div>
