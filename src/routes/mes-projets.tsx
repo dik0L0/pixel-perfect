@@ -61,7 +61,11 @@ function stats(p: Project) {
 function ProjectsPage() {
   const [list, setList] = useState<Project[]>([]);
   const [loaded, setLoaded] = useState(false);
-  const [form, setForm] = useState({ name: "", emoji: "🎯", target: "", deadline: "", monthly: "", start: "" });
+  const search = Route.useSearch();
+  const [form, setForm] = useState(() => ({
+    name: search.name ?? "", emoji: "🎯",
+    target: (search.budget ?? "").replace(/\D/g, ""), deadline: "", monthly: "", start: "",
+  }));
 
   useEffect(() => {
     try { const raw = localStorage.getItem(KEY); if (raw) setList(JSON.parse(raw)); } catch { /* ignore */ }
