@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { profileQuery } from "@/lib/data";
 import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { FullPageLoader } from "@/components/Spinner";
 import { cn } from "@/lib/utils";
 import { TxDialog } from "@/components/TxDialog";
 import { Plus } from "lucide-react";
@@ -36,7 +37,9 @@ const NAV = [
 ] as const;
 const MOBILE = ["/dashboard", "/transactions", "/budgets", "/objectifs"];
 
-import { FullPageLoader as Loading } from "@/components/Spinner";
+function Loading() {
+  return <FullPageLoader />;
+}
 
 function Layout() {
   const path = useRouterState({ select: (s) => s.location.pathname });
