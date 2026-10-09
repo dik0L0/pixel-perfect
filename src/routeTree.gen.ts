@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CommentCaMarcheRouteImport } from './routes/comment-ca-marche'
 import { Route as FonctionnalitesRouteImport } from './routes/fonctionnalites'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as MesProjetsRouteImport } from './routes/mes-projets'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SuivreMonArgentRouteImport } from './routes/suivre-mon-argent'
 import { Route as AuthenticatedAlertesRouteImport } from './routes/_authenticated/alertes'
@@ -56,6 +57,11 @@ const FonctionnalitesRoute = FonctionnalitesRouteImport.update({
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   id: '/forgot-password',
   path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MesProjetsRoute = MesProjetsRouteImport.update({
+  id: '/mes-projets',
+  path: '/mes-projets',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -133,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/comment-ca-marche': typeof CommentCaMarcheRoute
   '/fonctionnalites': typeof FonctionnalitesRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/mes-projets': typeof MesProjetsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/suivre-mon-argent': typeof SuivreMonArgentRoute
   '/alertes': typeof AuthenticatedAlertesRoute
@@ -153,6 +160,7 @@ export interface FileRoutesByTo {
   '/comment-ca-marche': typeof CommentCaMarcheRoute
   '/fonctionnalites': typeof FonctionnalitesRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/mes-projets': typeof MesProjetsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/suivre-mon-argent': typeof SuivreMonArgentRoute
   '/alertes': typeof AuthenticatedAlertesRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/comment-ca-marche': typeof CommentCaMarcheRoute
   '/fonctionnalites': typeof FonctionnalitesRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/mes-projets': typeof MesProjetsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/suivre-mon-argent': typeof SuivreMonArgentRoute
   '/_authenticated/alertes': typeof AuthenticatedAlertesRoute
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/comment-ca-marche'
     | '/fonctionnalites'
     | '/forgot-password'
+    | '/mes-projets'
     | '/reset-password'
     | '/suivre-mon-argent'
     | '/alertes'
@@ -217,6 +227,7 @@ export interface FileRouteTypes {
     | '/comment-ca-marche'
     | '/fonctionnalites'
     | '/forgot-password'
+    | '/mes-projets'
     | '/reset-password'
     | '/suivre-mon-argent'
     | '/alertes'
@@ -238,6 +249,7 @@ export interface FileRouteTypes {
     | '/comment-ca-marche'
     | '/fonctionnalites'
     | '/forgot-password'
+    | '/mes-projets'
     | '/reset-password'
     | '/suivre-mon-argent'
     | '/_authenticated/alertes'
@@ -260,6 +272,7 @@ export interface RootRouteChildren {
   CommentCaMarcheRoute: typeof CommentCaMarcheRoute
   FonctionnalitesRoute: typeof FonctionnalitesRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
+  MesProjetsRoute: typeof MesProjetsRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SuivreMonArgentRoute: typeof SuivreMonArgentRoute
 }
@@ -306,6 +319,13 @@ declare module '@tanstack/react-router' {
       path: '/forgot-password'
       fullPath: '/forgot-password'
       preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mes-projets': {
+      id: '/mes-projets'
+      path: '/mes-projets'
+      fullPath: '/mes-projets'
+      preLoaderRoute: typeof MesProjetsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -440,6 +460,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommentCaMarcheRoute: CommentCaMarcheRoute,
   FonctionnalitesRoute: FonctionnalitesRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
+  MesProjetsRoute: MesProjetsRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SuivreMonArgentRoute: SuivreMonArgentRoute,
 }
