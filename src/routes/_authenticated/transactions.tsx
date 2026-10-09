@@ -49,16 +49,17 @@ function Page() {
   const importCsv = async (file: File) => {
     const text = await file.text();
     const lines = text.split(/\r?\n/).filter(Boolean);
-    const sep = lines[0].includes(";") ? ";" : ",";
-    const head = lines[0].toLowerCase().split(sep).map((h) => h.trim());
+    const sep = (lines[0] ?? "").includes(";") ? ";" : ",";
+    const head = (lines[0] ?? "").toLowerCase().split(sep).map((h) => h.trim());
     const idx = (n: string[]) => head.findIndex((h) => n.some((x) => h.includes(x)));
     const iDate = idx(["date"]), iType = idx(["type"]), iAmt = idx(["montant", "amount"]), iCat = idx(["cat"]), iDesc = idx(["desc", "libell"]), iPay = idx(["moyen", "paiement"]);
     if (iDate < 0 || iAmt < 0) return toast.error("Colonnes requises : date, montant");
-    const rows = lines.slice(1).map((l) => l.split(sep).map((c) => c.trim().replace(/^"|"$/g, ""))).map((c) => {
-      const raw = Number(c[iAmt].replace(/\s/g, "").replace(",", "."));
-      const t = iType >= 0 ? (c[iType].toLowerCase().startsWith("r") ? "revenu" : "depense") : raw < 0 ? "depense" : "revenu";
-      const d = c[iDate].includes("/") ? c[iDate].split("/").reverse().join("-") : c[iDate];
-      return { date: d, type: t, amount: Math.abs(raw), category: (iCat >= 0 && c[iCat]) || "Autres", description: iDesc >= 0 ? c[iDesc] : null, payment_method: (iPay >= 0 && c[iPay]) || "Autre" };
+    const rows = lines.slice(1).map((l) => l.split(sep).map((c) => c.trim().replace(/^"|"$/g, ""))).map((cells) => {
+      const c = (i: number) => cells[i] ?? "";
+      const raw = Number(c(iAmt).replace(/\s/g, "").replace(",", "."));
+      const t = iType >= 0 ? (c(iType).toLowerCase().startsWith("r") ? "revenu" : "depense") : raw < 0 ? "depense" : "revenu";
+      const d = c(iDate).includes("/") ? c(iDate).split("/").reverse().join("-") : c(iDate);
+      return { date: d, type: t, amount: Math.abs(raw), category: (iCat >= 0 && c(iCat)) || "Autres", description: iDesc >= 0 ? c(iDesc) : null, payment_method: (iPay >= 0 && c(iPay)) || "Autre" };
     }).filter((r) => r.amount > 0 && /^\d{4}-\d{2}-\d{2}$/.test(r.date));
     if (!rows.length) return toast.error("Aucune ligne valide trouvée");
     const { error } = await supabase.from("transactions").insert(rows);

@@ -91,7 +91,7 @@ function Dashboard() {
           <Panel title="Prochaines échéances">
             <ul className="space-y-2 text-sm">
               <li className="flex justify-between"><span>💰 Salaire attendu</span><b>{pay.toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}</b></li>
-              {FIXED_CHARGES.filter(([key]) => (profile.fixed_charges?.[key] ?? 0) > 0).slice(0, 4).map(([key, l]) => <li key={key} className="flex justify-between text-muted-foreground"><span>{l}</span><span>{fcfa(profile.fixed_charges[key])}</span></li>)}
+              {FIXED_CHARGES.filter(([key]) => (profile.fixed_charges?.[key] ?? 0) > 0).slice(0, 4).map(([key, l]) => <li key={key} className="flex justify-between text-muted-foreground"><span>{l}</span><span>{fcfa(profile.fixed_charges[key] ?? 0)}</span></li>)}
             </ul>
           </Panel>
           <Panel title="Objectifs d'épargne" action={<Link to="/objectifs" className="text-xs font-semibold text-primary">Gérer</Link>}>
