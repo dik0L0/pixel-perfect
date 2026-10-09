@@ -20,7 +20,7 @@ export const Route = createFileRoute("/_authenticated/budgets")({
 const ICONS: Record<string, typeof Utensils> = {
   Alimentation: Utensils, Logement: Home, Transport: Car, Santé: Heart, Éducation: BookOpen,
   Communication: Wifi, Loisirs: Ticket, Famille: Users, Shopping: ShoppingBag,
-  Abonnements: Film, Autres: PiggyBank,
+  Abonnements: Ticket, Autres: PiggyBank,
 };
 const EXAMPLES: Record<string, string> = {
   Logement: "Loyer, électricité, eau",
