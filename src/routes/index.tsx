@@ -3,6 +3,7 @@ import { Bell, Bot, Coins, LineChart, PiggyBank, ShieldCheck, Smartphone, Sparkl
 import { Button } from "@/components/ui/button";
 import { SiteFooter, SiteHeader } from "@/components/marketing";
 import { DashboardPreview } from "@/components/DashboardPreview";
+import heroImg from "@/assets/hero-dola.jpg";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/")({
@@ -25,7 +26,7 @@ const SECTIONS = [
   { icon: Bot, title: "Découvrez votre assistant financier.", text: "Posez vos questions en français : « Puis-je acheter un ordinateur ? ». Les calculs sont faits par DOLA, l'IA les explique." },
 ];
 
-const FAQ = [
+const FAQ: [string, string][] = [
   ["DOLA est-il gratuit ?", "Oui, l'offre Gratuite couvre revenus, dépenses, tableau de bord et budgets. Les offres Premium ajoutent prévisions, simulations et assistant IA."],
   ["Mes données sont-elles en sécurité ?", "Vos données sont chiffrées et accessibles uniquement par vous. Nous ne les revendons jamais."],
   ["Faut-il connecter mon compte Mobile Money ?", "Non. Vous saisissez ou importez vos opérations. DOLA ne vous demandera jamais votre code PIN ni votre mot de passe bancaire."],
