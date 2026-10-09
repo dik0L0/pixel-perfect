@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_authenticated/budgets")({
 
 const ICONS: Record<string, typeof Utensils> = {
   Alimentation: Utensils, Logement: Home, Transport: Car, Santé: Heart, Éducation: BookOpen,
-  Communication: Internet, Loisirs: Film, Famille: Users, Shopping: ShoppingBag,
+  Communication: Wifi, Loisirs: DollarSign, Famille: Users, Shopping: ShoppingBag,
   Abonnements: Film, Autres: PiggyBank,
 };
 const EXAMPLES: Record<string, string> = {
