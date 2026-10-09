@@ -41,18 +41,18 @@ function AuthPage() {
         options: { emailRedirectTo: window.location.origin + "/dashboard", data: { first_name: f.first, last_name: f.last } },
       });
       setLoading(false);
-      if (error) return toast.error(error.message);
+      if (error) { toast.error(error.message); return; }
       if (data.session) navigate({ to: "/onboarding" }); else setSent(true);
     } else {
       const { error } = await supabase.auth.signInWithPassword({ email: f.email, password: f.password });
       setLoading(false);
-      if (error) return toast.error("Email ou mot de passe incorrect.");
+      if (error) { toast.error("Email ou mot de passe incorrect."); return; }
       navigate({ to: "/dashboard" });
     }
   };
   const google = async () => {
     const r = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/auth" });
-    if (r.error) return toast.error("Connexion Google impossible.");
+    if (r.error) { toast.error("Connexion Google impossible."); return; }
     if (r.redirected) return;
     navigate({ to: "/dashboard" });
   };
