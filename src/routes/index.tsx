@@ -79,3 +79,51 @@ function Index() {
     </div>
   );
 }
+
+function ProjectTeaser() {
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [budget, setBudget] = useState("");
+  const ready = name.trim().length > 0 && Number(budget) > 0;
+
+  return (
+    <section className="mx-auto max-w-4xl px-4 pt-20 sm:px-6">
+      <div className="relative overflow-hidden rounded-[2rem] bg-gradient-night p-8 text-night-foreground shadow-soft sm:p-12">
+        <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/30 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-primary/20 blur-3xl" />
+        <div className="relative">
+          <div className="flex flex-wrap items-center justify-between gap-6">
+            <div className="max-w-md">
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary-foreground"><Target className="h-3.5 w-3.5" />Suivi de projet</span>
+              <h2 className="mt-4 text-3xl font-bold sm:text-4xl">Un projet en tête ?</h2>
+              <p className="mt-3 opacity-75">Machine à laver, voyage, rentrée scolaire… Fixez votre objectif et voyez combien il faut, combien il manque et quand vous l'atteindrez.</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen((o) => !o)}
+              aria-expanded={open}
+              aria-label={open ? "Fermer" : "Créer un projet"}
+              className={`grid h-16 w-16 shrink-0 place-items-center rounded-full bg-gradient-primary text-primary-foreground shadow-elegant transition-transform duration-300 hover:scale-105 ${open ? "rotate-45" : ""}`}
+            >
+              <Plus className="h-8 w-8" />
+            </button>
+          </div>
+
+          <div className={`grid transition-all duration-500 ${open ? "mt-8 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+            <div className="overflow-hidden">
+              <div className="grid gap-3 rounded-2xl border border-sidebar-border bg-sidebar-accent/40 p-4 backdrop-blur sm:grid-cols-[1fr_1fr_auto] sm:p-5">
+                <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Nom de l'objectif (ex. Voyage à São Tomé)" className="h-12 border-sidebar-border bg-background/90 text-foreground" />
+                <Input inputMode="numeric" value={budget} onChange={(e) => setBudget(e.target.value.replace(/\D/g, ""))} placeholder="Budget prévu (FCFA)" className="h-12 border-sidebar-border bg-background/90 text-foreground" />
+                <Button asChild variant="hero" size="lg" className="h-12 px-6" disabled={!ready}>
+                  <Link to="/mes-projets" search={{ name: name.trim() || undefined, budget: budget || undefined }}>
+                    Lancer mon projet<ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
