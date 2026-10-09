@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { profileQuery } from "@/lib/data";
 import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { FullPageLoader } from "@/components/Spinner";
 import { cn } from "@/lib/utils";
 import { TxDialog } from "@/components/TxDialog";
 import { Plus } from "lucide-react";
@@ -37,7 +38,7 @@ const NAV = [
 const MOBILE = ["/dashboard", "/transactions", "/budgets", "/objectifs"];
 
 function Loading() {
-  return <div className="grid min-h-[60vh] place-items-center"><div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" /></div>;
+  return <FullPageLoader />;
 }
 
 function Layout() {

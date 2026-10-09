@@ -11,9 +11,11 @@ import { Switch } from "@/components/ui/switch";
 import { categoriesQuery, supabase, useInvalidate } from "@/lib/data";
 import { EXPENSE_CATEGORIES, INCOME_CATEGORIES, PAYMENT_METHODS, toISO, type Tx, type TxType } from "@/lib/finance";
 import { cn } from "@/lib/utils";
+import { Spinner } from "@/components/Spinner";
 
 export function TxDialog({ tx, trigger }: { tx?: Tx; trigger?: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
   const custom = useSuspenseQuery(categoriesQuery).data;
   const inv = useInvalidate();
   const [f, setF] = useState(() => tx ?? { type: "depense" as TxType, amount: 0, category: "Alimentation", date: toISO(new Date()), description: "", payment_method: "Espèces", exceptional: false });
@@ -23,8 +25,10 @@ export function TxDialog({ tx, trigger }: { tx?: Tx; trigger?: ReactNode }) {
 
   const save = async () => {
     if (!(f.amount > 0)) { toast.error("Montant invalide"); return; }
+    setSaving(true);
     const row = { type: f.type, amount: f.amount, category: f.category, date: f.date, description: f.description, payment_method: f.payment_method, exceptional: f.exceptional };
     const { error } = tx ? await supabase.from("transactions").update(row).eq("id", tx.id) : await supabase.from("transactions").insert(row);
+    setSaving(false);
     if (error) { toast.error(error.message); return; }
     await inv("transactions");
     toast.success(tx ? "Transaction modifiée" : "Transaction ajoutée");
@@ -54,7 +58,7 @@ export function TxDialog({ tx, trigger }: { tx?: Tx; trigger?: ReactNode }) {
           <div><Label>Description</Label><Input value={f.description ?? ""} onChange={(e) => setF({ ...f, description: e.target.value })} placeholder="Ex. Marché Mont-Bouët" className="mt-1.5 h-11 rounded-xl" /></div>
           <label className="flex items-center justify-between rounded-xl border p-3 text-sm"><span>Transaction exceptionnelle<span className="block text-xs text-muted-foreground">Exclue des moyennes de prévision</span></span><Switch checked={f.exceptional} onCheckedChange={(v) => setF({ ...f, exceptional: v })} /></label>
         </div>
-        <Button variant="hero" className="h-11" onClick={save}>Enregistrer</Button>
+        <Button variant="hero" className="h-11" onClick={save} disabled={saving}>{saving ? <><Spinner size="sm" className="border-primary-foreground border-t-transparent" />Enregistrement…</> : "Enregistrer"}</Button>
       </DialogContent>
     </Dialog>
   );

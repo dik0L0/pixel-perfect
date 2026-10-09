@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/components/Logo";
+import { Spinner } from "@/components/Spinner";
 
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
@@ -20,10 +21,13 @@ export const Route = createFileRoute("/reset-password")({
 
 function Page() {
   const [pw, setPw] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     const { error } = await supabase.auth.updateUser({ password: pw });
+    setLoading(false);
     if (error) { toast.error(error.message); return; }
     toast.success("Mot de passe mis à jour");
     navigate({ to: "/dashboard" });
@@ -34,7 +38,7 @@ function Page() {
         <Logo />
         <h1 className="text-xl font-bold">Nouveau mot de passe</h1>
         <Input type="password" minLength={8} required value={pw} onChange={(e) => setPw(e.target.value)} placeholder="8 caractères minimum" className="h-11 rounded-xl" />
-        <Button variant="hero" className="h-11 w-full">Enregistrer</Button>
+        <Button variant="hero" className="h-11 w-full" disabled={loading}>{loading ? <><Spinner size="sm" className="border-primary-foreground border-t-transparent" />Enregistrement…</> : "Enregistrer"}</Button>
       </form>
     </div>
   );

@@ -6,6 +6,7 @@ import { Bot, Send } from "lucide-react";
 import { askAssistant } from "@/lib/assistant.functions";
 import { PageHeader } from "@/components/ui-kit";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/Spinner";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
@@ -62,7 +63,7 @@ function Page() {
       </div>
       <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="mt-3 flex gap-2">
         <Input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ex. Puis-je acheter un téléphone à 150 000 FCFA ?" className="h-12 rounded-xl" />
-        <Button variant="hero" className="h-12 w-12" disabled={loading} aria-label="Envoyer"><Send /></Button>
+        <Button variant="hero" className="h-12 w-12" disabled={loading} aria-label="Envoyer">{loading ? <Spinner size="sm" className="border-primary-foreground border-t-transparent" /> : <Send />}</Button>
       </form>
     </div>
   );
