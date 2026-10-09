@@ -16,6 +16,7 @@ import { Route as CommentCaMarcheRouteImport } from './routes/comment-ca-marche'
 import { Route as FonctionnalitesRouteImport } from './routes/fonctionnalites'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SuivreMonArgentRouteImport } from './routes/suivre-mon-argent'
 import { Route as AuthenticatedAlertesRouteImport } from './routes/_authenticated/alertes'
 import { Route as AuthenticatedAssistantRouteImport } from './routes/_authenticated/assistant'
 import { Route as AuthenticatedBudgetsRouteImport } from './routes/_authenticated/budgets'
@@ -60,6 +61,11 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SuivreMonArgentRoute = SuivreMonArgentRouteImport.update({
+  id: '/suivre-mon-argent',
+  path: '/suivre-mon-argent',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAlertesRoute = AuthenticatedAlertesRouteImport.update({
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/fonctionnalites': typeof FonctionnalitesRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/suivre-mon-argent': typeof SuivreMonArgentRoute
   '/alertes': typeof AuthenticatedAlertesRoute
   '/assistant': typeof AuthenticatedAssistantRoute
   '/budgets': typeof AuthenticatedBudgetsRoute
@@ -147,6 +154,7 @@ export interface FileRoutesByTo {
   '/fonctionnalites': typeof FonctionnalitesRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/suivre-mon-argent': typeof SuivreMonArgentRoute
   '/alertes': typeof AuthenticatedAlertesRoute
   '/assistant': typeof AuthenticatedAssistantRoute
   '/budgets': typeof AuthenticatedBudgetsRoute
@@ -168,6 +176,7 @@ export interface FileRoutesById {
   '/fonctionnalites': typeof FonctionnalitesRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/suivre-mon-argent': typeof SuivreMonArgentRoute
   '/_authenticated/alertes': typeof AuthenticatedAlertesRoute
   '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
   '/_authenticated/budgets': typeof AuthenticatedBudgetsRoute
@@ -189,6 +198,7 @@ export interface FileRouteTypes {
     | '/fonctionnalites'
     | '/forgot-password'
     | '/reset-password'
+    | '/suivre-mon-argent'
     | '/alertes'
     | '/assistant'
     | '/budgets'
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/fonctionnalites'
     | '/forgot-password'
     | '/reset-password'
+    | '/suivre-mon-argent'
     | '/alertes'
     | '/assistant'
     | '/budgets'
@@ -228,6 +239,7 @@ export interface FileRouteTypes {
     | '/fonctionnalites'
     | '/forgot-password'
     | '/reset-password'
+    | '/suivre-mon-argent'
     | '/_authenticated/alertes'
     | '/_authenticated/assistant'
     | '/_authenticated/budgets'
@@ -249,6 +261,7 @@ export interface RootRouteChildren {
   FonctionnalitesRoute: typeof FonctionnalitesRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  SuivreMonArgentRoute: typeof SuivreMonArgentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -300,6 +313,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/suivre-mon-argent': {
+      id: '/suivre-mon-argent'
+      path: '/suivre-mon-argent'
+      fullPath: '/suivre-mon-argent'
+      preLoaderRoute: typeof SuivreMonArgentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/alertes': {
@@ -421,6 +441,7 @@ const rootRouteChildren: RootRouteChildren = {
   FonctionnalitesRoute: FonctionnalitesRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  SuivreMonArgentRoute: SuivreMonArgentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
