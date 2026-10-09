@@ -71,16 +71,6 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl space-y-6 px-4 py-20 sm:px-6">
-        {SECTIONS.map(({ icon: Icon, title, text }, i) => (
-          <div key={title} className={`card-surface flex flex-col gap-5 p-7 sm:flex-row sm:items-center ${i % 2 ? "sm:flex-row-reverse sm:text-right" : ""}`}>
-            <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-primary text-primary-foreground shadow-glow"><Icon className="h-6 w-6" /></div>
-            <div><h3 className="text-xl font-bold">{title}</h3><p className="mt-2 text-muted-foreground">{text}</p></div>
-          </div>
-        ))}
-      </section>
-
-
       <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
         <h2 className="text-center text-3xl font-bold">Questions fréquentes</h2>
         <Accordion type="single" collapsible className="mt-8">
