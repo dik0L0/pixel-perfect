@@ -18,10 +18,12 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as AuthenticatedAlertesRouteImport } from './routes/_authenticated/alertes'
+import { Route as AuthenticatedAssistantRouteImport } from './routes/_authenticated/assistant'
 import { Route as AuthenticatedBudgetsRouteImport } from './routes/_authenticated/budgets'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedObjectifsRouteImport } from './routes/_authenticated/objectifs'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedParametresRouteImport } from './routes/_authenticated/parametres'
 import { Route as AuthenticatedPrevisionsRouteImport } from './routes/_authenticated/previsions'
 import { Route as AuthenticatedSimulationsRouteImport } from './routes/_authenticated/simulations'
 import { Route as AuthenticatedStatistiquesRouteImport } from './routes/_authenticated/statistiques'
@@ -71,6 +73,11 @@ const AuthenticatedAlertesRoute = AuthenticatedAlertesRouteImport.update({
   path: '/alertes',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAssistantRoute = AuthenticatedAssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedBudgetsRoute = AuthenticatedBudgetsRouteImport.update({
   id: '/budgets',
   path: '/budgets',
@@ -89,6 +96,11 @@ const AuthenticatedObjectifsRoute = AuthenticatedObjectifsRouteImport.update({
 const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedParametresRoute = AuthenticatedParametresRouteImport.update({
+  id: '/parametres',
+  path: '/parametres',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedPrevisionsRoute = AuthenticatedPrevisionsRouteImport.update({
@@ -124,10 +136,12 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/tarifs': typeof TarifsRoute
   '/alertes': typeof AuthenticatedAlertesRoute
+  '/assistant': typeof AuthenticatedAssistantRoute
   '/budgets': typeof AuthenticatedBudgetsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/objectifs': typeof AuthenticatedObjectifsRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/parametres': typeof AuthenticatedParametresRoute
   '/previsions': typeof AuthenticatedPrevisionsRoute
   '/simulations': typeof AuthenticatedSimulationsRoute
   '/statistiques': typeof AuthenticatedStatistiquesRoute
@@ -142,10 +156,12 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/tarifs': typeof TarifsRoute
   '/alertes': typeof AuthenticatedAlertesRoute
+  '/assistant': typeof AuthenticatedAssistantRoute
   '/budgets': typeof AuthenticatedBudgetsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/objectifs': typeof AuthenticatedObjectifsRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/parametres': typeof AuthenticatedParametresRoute
   '/previsions': typeof AuthenticatedPrevisionsRoute
   '/simulations': typeof AuthenticatedSimulationsRoute
   '/statistiques': typeof AuthenticatedStatistiquesRoute
@@ -162,10 +178,12 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/tarifs': typeof TarifsRoute
   '/_authenticated/alertes': typeof AuthenticatedAlertesRoute
+  '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
   '/_authenticated/budgets': typeof AuthenticatedBudgetsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/objectifs': typeof AuthenticatedObjectifsRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/parametres': typeof AuthenticatedParametresRoute
   '/_authenticated/previsions': typeof AuthenticatedPrevisionsRoute
   '/_authenticated/simulations': typeof AuthenticatedSimulationsRoute
   '/_authenticated/statistiques': typeof AuthenticatedStatistiquesRoute
@@ -182,10 +200,12 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/tarifs'
     | '/alertes'
+    | '/assistant'
     | '/budgets'
     | '/dashboard'
     | '/objectifs'
     | '/onboarding'
+    | '/parametres'
     | '/previsions'
     | '/simulations'
     | '/statistiques'
@@ -200,10 +220,12 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/tarifs'
     | '/alertes'
+    | '/assistant'
     | '/budgets'
     | '/dashboard'
     | '/objectifs'
     | '/onboarding'
+    | '/parametres'
     | '/previsions'
     | '/simulations'
     | '/statistiques'
@@ -219,10 +241,12 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/tarifs'
     | '/_authenticated/alertes'
+    | '/_authenticated/assistant'
     | '/_authenticated/budgets'
     | '/_authenticated/dashboard'
     | '/_authenticated/objectifs'
     | '/_authenticated/onboarding'
+    | '/_authenticated/parametres'
     | '/_authenticated/previsions'
     | '/_authenticated/simulations'
     | '/_authenticated/statistiques'
@@ -305,6 +329,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAlertesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/assistant': {
+      id: '/_authenticated/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AuthenticatedAssistantRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/budgets': {
       id: '/_authenticated/budgets'
       path: '/budgets'
@@ -331,6 +362,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/parametres': {
+      id: '/_authenticated/parametres'
+      path: '/parametres'
+      fullPath: '/parametres'
+      preLoaderRoute: typeof AuthenticatedParametresRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/previsions': {
@@ -366,10 +404,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAlertesRoute: typeof AuthenticatedAlertesRoute
+  AuthenticatedAssistantRoute: typeof AuthenticatedAssistantRoute
   AuthenticatedBudgetsRoute: typeof AuthenticatedBudgetsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedObjectifsRoute: typeof AuthenticatedObjectifsRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+  AuthenticatedParametresRoute: typeof AuthenticatedParametresRoute
   AuthenticatedPrevisionsRoute: typeof AuthenticatedPrevisionsRoute
   AuthenticatedSimulationsRoute: typeof AuthenticatedSimulationsRoute
   AuthenticatedStatistiquesRoute: typeof AuthenticatedStatistiquesRoute
@@ -378,10 +418,12 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAlertesRoute: AuthenticatedAlertesRoute,
+  AuthenticatedAssistantRoute: AuthenticatedAssistantRoute,
   AuthenticatedBudgetsRoute: AuthenticatedBudgetsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedObjectifsRoute: AuthenticatedObjectifsRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+  AuthenticatedParametresRoute: AuthenticatedParametresRoute,
   AuthenticatedPrevisionsRoute: AuthenticatedPrevisionsRoute,
   AuthenticatedSimulationsRoute: AuthenticatedSimulationsRoute,
   AuthenticatedStatistiquesRoute: AuthenticatedStatistiquesRoute,
