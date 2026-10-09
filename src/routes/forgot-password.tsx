@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/components/Logo";
+import { Spinner } from "@/components/Spinner";
 
 export const Route = createFileRoute("/forgot-password")({
   head: () => ({
@@ -21,9 +22,12 @@ export const Route = createFileRoute("/forgot-password")({
 function Page() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
+    setLoading(false);
     if (error) { toast.error(error.message); return; }
     setSent(true);
   };
@@ -35,7 +39,7 @@ function Page() {
         {sent ? <p className="mt-3 text-sm text-muted-foreground">Si un compte existe pour {email}, un lien de réinitialisation vient d'être envoyé.</p> : (
           <form onSubmit={submit} className="mt-4 space-y-3">
             <Input type="email" required placeholder="votre@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className="h-11 rounded-xl" />
-            <Button variant="hero" className="h-11 w-full">Envoyer le lien</Button>
+            <Button variant="hero" className="h-11 w-full" disabled={loading}>{loading ? <><Spinner size="sm" className="border-primary-foreground border-t-transparent" />Envoi…</> : "Envoyer le lien"}</Button>
           </form>
         )}
         <Link to="/auth" search={{ mode: "login" }} className="mt-4 block text-sm text-primary">← Retour à la connexion</Link>
