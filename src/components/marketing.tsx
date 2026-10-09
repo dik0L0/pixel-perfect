@@ -12,7 +12,6 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
           <Link to="/fonctionnalites" className="hover:text-foreground">Fonctionnalités</Link>
           <Link to="/comment-ca-marche" className="hover:text-foreground">Comment ça marche</Link>
-          <Link to="/tarifs" className="hover:text-foreground">Tarifs</Link>
           <Link to="/auth" search={{ mode: "login" }} className="hover:text-foreground">Connexion</Link>
         </nav>
         <Button asChild variant="hero" size="sm" className="h-9 px-4"><Link to="/auth" search={{ mode: "signup" }}>Commencer gratuitement</Link></Button>
@@ -27,12 +26,11 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 sm:grid-cols-4">
         <div className="sm:col-span-2">
           <Logo light />
-          <p className="mt-3 max-w-xs text-sm opacity-70">Suivez votre argent. Conçu à Libreville pour le Gabon et bientôt toute la zone CEMAC.</p>
+          <p className="mt-3 max-w-xs text-sm opacity-70">Suivez votre argent. Conçu à Libreville pour le Gabon.</p>
         </div>
         <div className="space-y-2 text-sm opacity-80">
           <p className="font-semibold opacity-100">Produit</p>
           <Link to="/fonctionnalites" className="block">Fonctionnalités</Link>
-          <Link to="/tarifs" className="block">Tarifs</Link>
           <Link to="/comment-ca-marche" className="block">Comment ça marche</Link>
         </div>
         <div className="space-y-2 text-sm opacity-80">

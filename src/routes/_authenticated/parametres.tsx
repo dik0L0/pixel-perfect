@@ -5,7 +5,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { supabase, useFinance, useInvalidate } from "@/lib/data";
 import { ALERT_TYPES, FIXED_CHARGES, type Profile } from "@/lib/finance";
 import { PageHeader, Panel } from "@/components/ui-kit";
-import { PricingCards } from "@/components/marketing";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -94,10 +93,6 @@ function Page() {
             <Button variant="outline" onClick={changePw} disabled={pw.next.length < 8}>Changer le mot de passe</Button>
             <p className="text-xs text-muted-foreground">DOLA ne vous demandera jamais votre code PIN Mobile Money ni votre mot de passe bancaire.</p>
           </div>
-        </Panel>
-        <Panel title="Abonnement" className="lg:col-span-2">
-          <p className="mb-4 rounded-xl bg-primary/5 p-3 text-sm"><b>Mode démonstration</b> — aucun prestataire de paiement n'est encore connecté. Le paiement par Airtel Money et Moov Money arrive bientôt ; votre offre ne changera qu'après confirmation sécurisée d'un paiement. Pendant le lancement, toutes les fonctionnalités sont accessibles.</p>
-          <PricingCards current={profile.plan} onPick={() => toast.info("Paiement bientôt disponible via Airtel Money et Moov Money.")} />
         </Panel>
         <Panel title="Confidentialité & export">
           <p className="text-sm text-muted-foreground">Vos données ne sont visibles que par vous et ne sont jamais revendues.</p>

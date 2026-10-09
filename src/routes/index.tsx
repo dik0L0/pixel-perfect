@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Bell, Bot, Coins, LineChart, PiggyBank, ShieldCheck, Smartphone, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SiteFooter, SiteHeader, PricingCards } from "@/components/marketing";
+import { SiteFooter, SiteHeader } from "@/components/marketing";
 import { DashboardPreview } from "@/components/DashboardPreview";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -80,13 +80,6 @@ function Index() {
         ))}
       </section>
 
-      <section className="bg-muted/50 py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="text-center text-3xl font-bold">Tarification</h2>
-          <p className="mt-2 text-center text-muted-foreground">Des offres accessibles, en Franc CFA.</p>
-          <div className="mt-10"><PricingCards /></div>
-        </div>
-      </section>
 
       <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
         <h2 className="text-center text-3xl font-bold">Questions fréquentes</h2>
