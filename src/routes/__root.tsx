@@ -76,7 +76,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   }),
   shellComponent: RootShell,
   component: RootComponent,
-  defaultPendingComponent: FullPageLoader,
+  pendingComponent: FullPageLoader,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
