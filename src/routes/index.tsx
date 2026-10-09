@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bell, Bot, Coins, LineChart, PiggyBank, ShieldCheck, Smartphone, Sparkles } from "lucide-react";
+import { Bell, Bot, Coins, LineChart, PiggyBank, ShieldCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/marketing";
 import { DashboardPreview } from "@/components/DashboardPreview";
