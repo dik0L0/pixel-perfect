@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/assistant")({
-  head: () => ({ meta: [{ title: "Mon assistant — MONÉO" }, { name: "description", content: "Discutez avec votre assistant financier." }] }),
+  head: () => ({ meta: [{ title: "Mon assistant — DOLA" }, { name: "description", content: "Discutez avec votre assistant financier." }] }),
   component: Page,
 });
 
@@ -40,7 +40,7 @@ function Page() {
 
   return (
     <div className="flex h-[calc(100vh-11rem)] flex-col lg:h-[calc(100vh-5rem)]">
-      <PageHeader title="Mon assistant" subtitle="Les calculs sont faits par MONÉO ; l'IA les explique. Elle n'invente aucun montant." />
+      <PageHeader title="Mon assistant" subtitle="Les calculs sont faits par DOLA ; l'IA les explique. Elle n'invente aucun montant." />
       {unavailable && <p className="mb-3 rounded-xl bg-warning/10 p-3 text-sm">L'assistant IA n'est pas encore disponible.</p>}
       <div className="card-surface flex-1 overflow-y-auto p-4">
         {!msgs.length && (

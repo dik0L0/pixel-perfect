@@ -57,7 +57,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "MONÉO — Maîtrisez votre argent" },
+      { title: "DOLA — Suivez votre argent" },
       { name: "description", content: "Gestion financière personnelle intelligente pour le Gabon, en Franc CFA." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -94,7 +94,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   useEffect(() => {
-    if (localStorage.getItem("moneo-theme") === "dark") document.documentElement.classList.add("dark");
+    if (localStorage.getItem("dola-theme") === "dark") document.documentElement.classList.add("dark");
     const { data } = supabase.auth.onAuthStateChange((event) => {
       if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
       router.invalidate();

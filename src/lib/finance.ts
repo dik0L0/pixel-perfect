@@ -1,4 +1,4 @@
-// Moteur financier déterministe de MONÉO. Toutes les valeurs affichées
+// Moteur financier déterministe de DOLA. Toutes les valeurs affichées
 // (et transmises à l'assistant IA) proviennent de ces fonctions.
 
 export type TxType = "revenu" | "depense";
@@ -51,12 +51,12 @@ export const pct = (n: number | null) => (n === null || !isFinite(n) ? "—" : `
 export const toISO = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 export const monthKey = (d: Date | string) => (typeof d === "string" ? d.slice(0, 7) : toISO(d).slice(0, 7));
 export const shiftMonth = (key: string, delta: number) => {
-  const [y, m] = key.split("-").map(Number);
+  const [y = 2026, m = 1] = key.split("-").map(Number);
   return monthKey(new Date(y, m - 1 + delta, 1));
 };
 const MONTHS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
 export const monthLabel = (key: string) => {
-  const [y, m] = key.split("-").map(Number);
+  const [y = 2026, m = 1] = key.split("-").map(Number);
   return `${MONTHS[m - 1]} ${String(y).slice(2)}`;
 };
 const daysInMonth = (d: Date) => new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();

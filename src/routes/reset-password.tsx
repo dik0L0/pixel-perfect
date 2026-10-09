@@ -9,9 +9,9 @@ import { Logo } from "@/components/Logo";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "Nouveau mot de passe — MONÉO" },
-      { name: "description", content: "Choisissez un nouveau mot de passe MONÉO." },
-      { property: "og:title", content: "Nouveau mot de passe — MONÉO" },
+      { title: "Nouveau mot de passe — DOLA" },
+      { name: "description", content: "Choisissez un nouveau mot de passe DOLA." },
+      { property: "og:title", content: "Nouveau mot de passe — DOLA" },
       { property: "og:description", content: "Définissez votre nouveau mot de passe." },
     ],
   }),

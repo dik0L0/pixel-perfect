@@ -16,7 +16,6 @@ import { Route as CommentCaMarcheRouteImport } from './routes/comment-ca-marche'
 import { Route as FonctionnalitesRouteImport } from './routes/fonctionnalites'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
-import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as AuthenticatedAlertesRouteImport } from './routes/_authenticated/alertes'
 import { Route as AuthenticatedAssistantRouteImport } from './routes/_authenticated/assistant'
 import { Route as AuthenticatedBudgetsRouteImport } from './routes/_authenticated/budgets'
@@ -61,11 +60,6 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TarifsRoute = TarifsRouteImport.update({
-  id: '/tarifs',
-  path: '/tarifs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAlertesRoute = AuthenticatedAlertesRouteImport.update({
@@ -134,7 +128,6 @@ export interface FileRoutesByFullPath {
   '/fonctionnalites': typeof FonctionnalitesRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/tarifs': typeof TarifsRoute
   '/alertes': typeof AuthenticatedAlertesRoute
   '/assistant': typeof AuthenticatedAssistantRoute
   '/budgets': typeof AuthenticatedBudgetsRoute
@@ -154,7 +147,6 @@ export interface FileRoutesByTo {
   '/fonctionnalites': typeof FonctionnalitesRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/tarifs': typeof TarifsRoute
   '/alertes': typeof AuthenticatedAlertesRoute
   '/assistant': typeof AuthenticatedAssistantRoute
   '/budgets': typeof AuthenticatedBudgetsRoute
@@ -176,7 +168,6 @@ export interface FileRoutesById {
   '/fonctionnalites': typeof FonctionnalitesRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
-  '/tarifs': typeof TarifsRoute
   '/_authenticated/alertes': typeof AuthenticatedAlertesRoute
   '/_authenticated/assistant': typeof AuthenticatedAssistantRoute
   '/_authenticated/budgets': typeof AuthenticatedBudgetsRoute
@@ -198,7 +189,6 @@ export interface FileRouteTypes {
     | '/fonctionnalites'
     | '/forgot-password'
     | '/reset-password'
-    | '/tarifs'
     | '/alertes'
     | '/assistant'
     | '/budgets'
@@ -218,7 +208,6 @@ export interface FileRouteTypes {
     | '/fonctionnalites'
     | '/forgot-password'
     | '/reset-password'
-    | '/tarifs'
     | '/alertes'
     | '/assistant'
     | '/budgets'
@@ -239,7 +228,6 @@ export interface FileRouteTypes {
     | '/fonctionnalites'
     | '/forgot-password'
     | '/reset-password'
-    | '/tarifs'
     | '/_authenticated/alertes'
     | '/_authenticated/assistant'
     | '/_authenticated/budgets'
@@ -261,7 +249,6 @@ export interface RootRouteChildren {
   FonctionnalitesRoute: typeof FonctionnalitesRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
-  TarifsRoute: typeof TarifsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -313,13 +300,6 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tarifs': {
-      id: '/tarifs'
-      path: '/tarifs'
-      fullPath: '/tarifs'
-      preLoaderRoute: typeof TarifsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/alertes': {
@@ -441,7 +421,6 @@ const rootRouteChildren: RootRouteChildren = {
   FonctionnalitesRoute: FonctionnalitesRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   ResetPasswordRoute: ResetPasswordRoute,
-  TarifsRoute: TarifsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

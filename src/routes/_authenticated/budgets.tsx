@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/budgets")({
-  head: () => ({ meta: [{ title: "Mes budgets — MONÉO" }, { name: "description", content: "Budgets mensuels par catégorie." }] }),
+  head: () => ({ meta: [{ title: "Mes budgets — DOLA" }, { name: "description", content: "Budgets mensuels par catégorie." }] }),
   component: Page,
 });
 
