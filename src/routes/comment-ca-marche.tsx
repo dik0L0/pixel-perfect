@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteFooter, SiteHeader } from "@/components/marketing";
+import { SiteHeader } from "@/components/marketing";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/comment-ca-marche")({
@@ -37,7 +37,6 @@ function Page() {
         </ol>
         <div className="mt-10 text-center"><Button asChild variant="hero" size="lg" className="h-12"><Link to="/auth" search={{ mode: "signup" }}>Créer mon compte</Link></Button></div>
       </div>
-      <SiteFooter />
     </div>
   );
 }

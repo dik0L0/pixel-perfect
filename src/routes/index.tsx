@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Bell, Bot, Coins, LineChart, PiggyBank, ShieldCheck, Smartphone, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SiteFooter, SiteHeader } from "@/components/marketing";
+import { SiteHeader } from "@/components/marketing";
 import { DashboardPreview } from "@/components/DashboardPreview";
 import heroImg from "@/assets/hero-dola.jpg";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -92,7 +92,6 @@ function Index() {
           ))}
         </Accordion>
       </section>
-      <SiteFooter />
     </div>
   );
 }

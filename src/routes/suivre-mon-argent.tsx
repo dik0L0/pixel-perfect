@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Plus, Trash2, RotateCcw, TrendingUp, Wallet, PiggyBank, AlertTriangle } from "lucide-react";
-import { SiteHeader, SiteFooter } from "@/components/marketing";
+import { SiteHeader } from "@/components/marketing";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { fcfa } from "@/lib/finance";
@@ -198,7 +198,6 @@ function SuivrePage() {
           <div className="text-right"><p>Revenus {fcfa(r.income)}</p><p>Dépenses {fcfa(r.expense)}</p></div>
         </div>
       </div>
-      <SiteFooter />
     </div>
   );
 }

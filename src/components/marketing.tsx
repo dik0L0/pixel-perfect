@@ -20,30 +20,6 @@ export function SiteHeader() {
   );
 }
 
-export function SiteFooter() {
-  return (
-    <footer className="bg-night text-night-foreground">
-      <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 sm:grid-cols-4">
-        <div className="sm:col-span-2">
-          <Logo light />
-          <p className="mt-3 max-w-xs text-sm opacity-70">Suivez votre argent. Conçu à Libreville pour le Gabon.</p>
-        </div>
-        <div className="space-y-2 text-sm opacity-80">
-          <p className="font-semibold opacity-100">Produit</p>
-          <Link to="/fonctionnalites" className="block">Fonctionnalités</Link>
-          <Link to="/comment-ca-marche" className="block">Comment ça marche</Link>
-        </div>
-        <div className="space-y-2 text-sm opacity-80">
-          <p className="font-semibold opacity-100">Sécurité</p>
-          <p>Aucun code PIN demandé</p>
-          <p>Données chiffrées</p>
-          <p>Vos données vous appartiennent</p>
-        </div>
-      </div>
-      <p className="border-t border-sidebar-border py-5 text-center text-xs opacity-50">© {new Date().getFullYear()} DOLA. Tous droits réservés.</p>
-    </footer>
-  );
-}
 
 export const PLANS = [
   { id: "gratuit", name: "Gratuit", price: 0, features: ["Gestion des revenus", "Gestion des dépenses", "Tableau de bord", "Statistiques simples", "Budgets mensuels"] },
