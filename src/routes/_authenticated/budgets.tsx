@@ -56,9 +56,9 @@ function Page() {
 
   const prefillFixed = async () => {
     const rows = FIXED_CHARGES.map(([key, , cat]) => ({ month, category: cat, amount: Number(profile.fixed_charges?.[key] ?? 0), user_id: profile.id })).filter((r) => r.amount > 0);
-    if ($1) { toast.error($2); return; }
+    if (!rows.length) { toast.error("Aucune charge fixe renseignée"); return; }
     const { error } = await supabase.from("budgets").upsert(rows, { onConflict: "user_id,month,category" });
-    if ($1) { toast.error($2); return; }
+    if (error) { toast.error(error.message); return; }
     await inv("budgets"); toast.success("Charges fixes ajoutées au budget");
   };
 
@@ -66,12 +66,12 @@ function Page() {
     const value = Number(amt);
     if (!value || value <= 0) { setEditing(null); return; }
     const { error } = await supabase.from("budgets").upsert({ month, category, amount: value, user_id: profile.id }, { onConflict: "user_id,month,category" });
-    if ($1) { toast.error($2); return; }
+    if (error) { toast.error(error.message); return; }
     setEditing(null); setAmt(""); await inv("budgets");
   };
   const copyPrev = async () => {
     const prev = budgets.filter((b) => b.month === shiftMonth(month, -1));
-    if ($1) { toast.error($2); return; }
+    if (!prev.length) { toast.error("Aucun budget le mois précédent"); return; }
     await supabase.from("budgets").upsert(prev.map((b) => ({ month, category: b.category, amount: b.amount, user_id: profile.id })), { onConflict: "user_id,month,category" });
     await inv("budgets"); toast.success("Budgets copiés");
   };

@@ -53,7 +53,7 @@ function Page() {
     const head = (lines[0] ?? "").toLowerCase().split(sep).map((h) => h.trim());
     const idx = (n: string[]) => head.findIndex((h) => n.some((x) => h.includes(x)));
     const iDate = idx(["date"]), iType = idx(["type"]), iAmt = idx(["montant", "amount"]), iCat = idx(["cat"]), iDesc = idx(["desc", "libell"]), iPay = idx(["moyen", "paiement"]);
-    if ($1) { toast.error($2); return; }
+    if (iDate < 0 || iAmt < 0) { toast.error("Colonnes requises : date, montant"); return; }
     const rows = lines.slice(1).map((l) => l.split(sep).map((c) => c.trim().replace(/^"|"$/g, ""))).map((cells) => {
       const c = (i: number) => cells[i] ?? "";
       const raw = Number(c(iAmt).replace(/\s/g, "").replace(",", "."));
@@ -61,9 +61,9 @@ function Page() {
       const d = c(iDate).includes("/") ? c(iDate).split("/").reverse().join("-") : c(iDate);
       return { date: d, type: t, amount: Math.abs(raw), category: (iCat >= 0 && c(iCat)) || "Autres", description: iDesc >= 0 ? c(iDesc) : null, payment_method: (iPay >= 0 && c(iPay)) || "Autre" };
     }).filter((r) => r.amount > 0 && /^\d{4}-\d{2}-\d{2}$/.test(r.date));
-    if ($1) { toast.error($2); return; }
+    if (!rows.length) { toast.error("Aucune ligne valide trouvée"); return; }
     const { error } = await supabase.from("transactions").insert(rows);
-    if ($1) { toast.error($2); return; }
+    if (error) { toast.error(error.message); return; }
     await inv("transactions");
     toast.success(`${rows.length} transactions importées`);
   };

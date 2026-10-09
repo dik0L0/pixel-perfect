@@ -67,9 +67,9 @@ function GoalDialog() {
   const [open, setOpen] = useState(false);
   const [f, setF] = useState({ name: "", target: 0, saved: 0, target_date: "", priority: "moyenne" });
   const save = async () => {
-    if ($1) { toast.error($2); return; }
+    if (!f.name || !(f.target > 0)) { toast.error("Nom et montant cible requis"); return; }
     const { error } = await supabase.from("goals").insert({ ...f, target_date: f.target_date || null });
-    if ($1) { toast.error($2); return; }
+    if (error) { toast.error(error.message); return; }
     await inv("goals"); setOpen(false);
   };
   return (

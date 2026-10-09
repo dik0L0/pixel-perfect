@@ -34,7 +34,7 @@ function Onboarding() {
     const { email: _e, plan: _p, ...rest } = s as Profile & { email?: string };
     void _e; void _p;
     const { error } = await supabase.from("profiles").update({ ...rest, onboarded: true }).eq("id", p.id);
-    if ($1) { toast.error($2); return; }
+    if (error) { toast.error(error.message); return; }
     const month = monthKey(new Date());
     if (plan.budgets.length) await supabase.from("budgets").upsert(plan.budgets.map((b) => ({ ...b, month, user_id: p.id })), { onConflict: "user_id,month,category" });
     await inv("profile", "budgets");

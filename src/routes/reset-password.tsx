@@ -24,7 +24,7 @@ function Page() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { error } = await supabase.auth.updateUser({ password: pw });
-    if ($1) { toast.error($2); return; }
+    if (error) { toast.error(error.message); return; }
     toast.success("Mot de passe mis à jour");
     navigate({ to: "/dashboard" });
   };

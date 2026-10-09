@@ -22,10 +22,10 @@ export function TxDialog({ tx, trigger }: { tx?: Tx; trigger?: ReactNode }) {
     : [...INCOME_CATEGORIES, ...custom.filter((c) => c.kind === "revenu").map((c) => c.name)];
 
   const save = async () => {
-    if ($1) { toast.error($2); return; }
+    if (!(f.amount > 0)) { toast.error("Montant invalide"); return; }
     const row = { type: f.type, amount: f.amount, category: f.category, date: f.date, description: f.description, payment_method: f.payment_method, exceptional: f.exceptional };
     const { error } = tx ? await supabase.from("transactions").update(row).eq("id", tx.id) : await supabase.from("transactions").insert(row);
-    if ($1) { toast.error($2); return; }
+    if (error) { toast.error(error.message); return; }
     await inv("transactions");
     toast.success(tx ? "Transaction modifiée" : "Transaction ajoutée");
     setOpen(false);

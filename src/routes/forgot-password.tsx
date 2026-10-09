@@ -24,7 +24,7 @@ function Page() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
-    if ($1) { toast.error($2); return; }
+    if (error) { toast.error(error.message); return; }
     setSent(true);
   };
   return (
