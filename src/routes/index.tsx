@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bell, Bot, Coins, LineChart, PiggyBank, ShieldCheck, Sparkles } from "lucide-react";
+import { Bell, Bot, Coins, LineChart, PiggyBank, Rocket, ShieldCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/marketing";
 import { DashboardPreview } from "@/components/DashboardPreview";
@@ -43,7 +43,7 @@ function Index() {
           <div className="animate-rise">
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"><Sparkles className="h-3.5 w-3.5" />Pensé pour le Gabon · 100 % en FCFA</span>
             <h1 className="mt-5 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">Suivez votre argent. <span className="text-primary">Simplement.</span></h1>
-            <p className="mt-5 flex max-w-lg items-center gap-2 text-lg text-muted-foreground"><span>DOLA vous aide à comprendre vos dépenses, anticiper vos besoins et garder le contrôle de votre budget jusqu'à la prochaine paie.</span><Sparkles className="h-5 w-5 shrink-0 text-primary" /></p>
+            <p className="mt-5 max-w-lg text-lg text-muted-foreground">DOLA vous aide à comprendre vos dépenses, anticiper vos besoins et garder le contrôle de votre budget jusqu'à la prochaine paie <Rocket className="inline h-5 w-5 text-primary" /></p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="hero" size="lg" className="h-12 px-6"><Link to="/suivre-mon-argent">Suivre mon argent</Link></Button>
             </div>
