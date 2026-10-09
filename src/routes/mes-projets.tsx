@@ -18,8 +18,8 @@ export const Route = createFileRoute("/mes-projets")({
     ],
   }),
   validateSearch: (s: Record<string, unknown>) => ({
-    name: typeof s.name === "string" ? s.name : undefined,
-    budget: typeof s.budget === "string" ? s.budget : undefined,
+    name: typeof s["name"] === "string" ? (s["name"] as string) : undefined,
+    budget: typeof s["budget"] === "string" ? (s["budget"] as string) : undefined,
   }),
   component: ProjectsPage,
 });

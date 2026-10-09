@@ -40,7 +40,7 @@ function Index() {
             <p className="mt-5 max-w-lg text-lg text-muted-foreground">DOLA vous aide à comprendre vos dépenses, anticiper vos besoins et garder le contrôle de votre budget jusqu'à la prochaine paie <Rocket className="inline h-5 w-5 text-primary" /></p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="hero" size="lg" className="h-12 px-6"><Link to="/suivre-mon-argent">Suivre mon argent</Link></Button>
-              <Button asChild variant="outline" size="lg" className="h-12 px-6"><Link to="/mes-projets">Suivre un projet</Link></Button>
+              <Button asChild variant="outline" size="lg" className="h-12 px-6"><Link to="/mes-projets" search={{ name: undefined, budget: undefined }}>Suivre un projet</Link></Button>
             </div>
             <div className="mt-8 text-sm text-muted-foreground">
               <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-success" />Aucun code PIN demandé</span>
