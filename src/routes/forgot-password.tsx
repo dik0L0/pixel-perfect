@@ -1,0 +1,45 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Logo } from "@/components/Logo";
+
+export const Route = createFileRoute("/forgot-password")({
+  head: () => ({
+    meta: [
+      { title: "Mot de passe oublié — MONÉO" },
+      { name: "description", content: "Réinitialisez le mot de passe de votre compte MONÉO." },
+      { property: "og:title", content: "Mot de passe oublié — MONÉO" },
+      { property: "og:description", content: "Recevez un lien de réinitialisation par email." },
+    ],
+  }),
+  component: Page,
+});
+
+function Page() {
+  const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
+    if (error) return toast.error(error.message);
+    setSent(true);
+  };
+  return (
+    <div className="flex min-h-screen items-center justify-center p-6">
+      <div className="card-surface w-full max-w-sm p-6 animate-rise">
+        <Logo className="mb-6" />
+        <h1 className="text-xl font-bold">Mot de passe oublié</h1>
+        {sent ? <p className="mt-3 text-sm text-muted-foreground">Si un compte existe pour {email}, un lien de réinitialisation vient d'être envoyé.</p> : (
+          <form onSubmit={submit} className="mt-4 space-y-3">
+            <Input type="email" required placeholder="votre@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className="h-11 rounded-xl" />
+            <Button variant="hero" className="h-11 w-full">Envoyer le lien</Button>
+          </form>
+        )}
+        <Link to="/auth" search={{ mode: "login" }} className="mt-4 block text-sm text-primary">← Retour à la connexion</Link>
+      </div>
+    </div>
+  );
+}
