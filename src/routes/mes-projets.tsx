@@ -17,6 +17,10 @@ export const Route = createFileRoute("/mes-projets")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
+  validateSearch: (s: Record<string, unknown>) => ({
+    name: typeof s.name === "string" ? s.name : undefined,
+    budget: typeof s.budget === "string" ? s.budget : undefined,
+  }),
   component: ProjectsPage,
 });
 
