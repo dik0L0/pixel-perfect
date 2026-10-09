@@ -10,7 +10,7 @@ export function Logo({ className, light }: { className?: string; light?: boolean
         alt="DOLA — Suivez votre argent."
         width={873}
         height={195}
-        className={cn("h-9 w-auto object-contain", light && "brightness-0 invert")}
+        className={cn("h-7 w-auto object-contain", light && "brightness-0 invert")}
       />
     </Link>
   );
