@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Bell, PiggyBank, Rocket, ShieldCheck, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Plus, Rocket, ShieldCheck, Sparkles, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { SiteHeader } from "@/components/marketing";
 import { DashboardPreview } from "@/components/DashboardPreview";
 import heroImg from "@/assets/hero-dola.jpg";
