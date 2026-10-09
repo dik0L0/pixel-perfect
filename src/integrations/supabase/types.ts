@@ -14,7 +14,230 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      budgets: {
+        Row: {
+          amount: number
+          category: string
+          id: string
+          month: string
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          category: string
+          id?: string
+          month: string
+          user_id?: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          id?: string
+          month?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      categories: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind?: string
+          name: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      goal_contributions: {
+        Row: {
+          amount: number
+          date: string
+          goal_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          date?: string
+          goal_id: string
+          id?: string
+          user_id?: string
+        }
+        Update: {
+          amount?: number
+          date?: string
+          goal_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "goal_contributions_goal_id_fkey"
+            columns: ["goal_id"]
+            isOneToOne: false
+            referencedRelation: "goals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      goals: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          priority: string
+          saved: number
+          target: number
+          target_date: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          priority?: string
+          saved?: number
+          target: number
+          target_date?: string | null
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          priority?: string
+          saved?: number
+          target?: number
+          target_date?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notification_reads: {
+        Row: {
+          key: string
+          user_id: string
+        }
+        Insert: {
+          key: string
+          user_id?: string
+        }
+        Update: {
+          key?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          alert_threshold: number
+          alerts_enabled: Json
+          created_at: string
+          employment: string | null
+          first_name: string
+          fixed_charges: Json
+          id: string
+          income_frequency: string | null
+          last_name: string
+          main_goal: string | null
+          onboarded: boolean
+          other_income: number
+          payday: number
+          plan: string
+          salary: number
+          secondary_income: number
+        }
+        Insert: {
+          alert_threshold?: number
+          alerts_enabled?: Json
+          created_at?: string
+          employment?: string | null
+          first_name?: string
+          fixed_charges?: Json
+          id: string
+          income_frequency?: string | null
+          last_name?: string
+          main_goal?: string | null
+          onboarded?: boolean
+          other_income?: number
+          payday?: number
+          plan?: string
+          salary?: number
+          secondary_income?: number
+        }
+        Update: {
+          alert_threshold?: number
+          alerts_enabled?: Json
+          created_at?: string
+          employment?: string | null
+          first_name?: string
+          fixed_charges?: Json
+          id?: string
+          income_frequency?: string | null
+          last_name?: string
+          main_goal?: string | null
+          onboarded?: boolean
+          other_income?: number
+          payday?: number
+          plan?: string
+          salary?: number
+          secondary_income?: number
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          category: string
+          created_at: string
+          date: string
+          description: string | null
+          exceptional: boolean
+          id: string
+          payment_method: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          category: string
+          created_at?: string
+          date?: string
+          description?: string | null
+          exceptional?: boolean
+          id?: string
+          payment_method?: string
+          type: string
+          user_id?: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          created_at?: string
+          date?: string
+          description?: string | null
+          exceptional?: boolean
+          id?: string
+          payment_method?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
