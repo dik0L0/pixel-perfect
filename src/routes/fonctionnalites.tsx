@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeftRight, BarChart3, Bell, Bot, Calculator, PieChart, Target, TrendingUp } from "lucide-react";
-import { SiteFooter, SiteHeader } from "@/components/marketing";
+import { SiteHeader } from "@/components/marketing";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/fonctionnalites")({
@@ -39,7 +39,6 @@ function Page() {
         </div>
         <div className="mt-12 text-center"><Button asChild variant="hero" size="lg" className="h-12"><Link to="/auth" search={{ mode: "signup" }}>Commencer gratuitement</Link></Button></div>
       </div>
-      <SiteFooter />
     </div>
   );
 }
