@@ -205,13 +205,13 @@ function SuivrePage() {
             <Button variant="outline" className="rounded-xl" onClick={() => { if (confirm("Tout effacer ?")) setS(DEFAULT()); }}><RotateCcw className="mr-2 h-4 w-4" />Tout effacer</Button>
           </div>
 
-          <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
+          <aside className="animate-rise space-y-4 lg:sticky lg:top-20 lg:self-start" style={{ animationDelay: "120ms" }}>
             <div className="rounded-2xl bg-sidebar p-5 text-sidebar-foreground">
               <p className="text-sm opacity-80">Reste à la fin du mois</p>
-              <p className={`font-display text-3xl font-bold ${r.rest < 0 ? "text-destructive" : ""}`}>{fcfa(r.rest)}</p>
+              <p className={`font-display text-3xl font-bold ${r.rest < 0 ? "text-destructive" : ""}`}>{fcfa(restCount)}</p>
               <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                <div><p className="flex items-center gap-1 opacity-80"><Wallet className="h-4 w-4" />Revenus</p><p className="font-semibold">{fcfa(r.income)}</p></div>
-                <div><p className="flex items-center gap-1 opacity-80"><TrendingUp className="h-4 w-4" />Dépenses</p><p className="font-semibold">{fcfa(r.expense)}</p></div>
+                <div><p className="flex items-center gap-1 opacity-80"><Wallet className="h-4 w-4" />Revenus</p><p className="font-semibold">{fcfa(incomeCount)}</p></div>
+                <div><p className="flex items-center gap-1 opacity-80"><TrendingUp className="h-4 w-4" />Dépenses</p><p className="font-semibold">{fcfa(expenseCount)}</p></div>
               </div>
               <p className="mt-3 flex items-center gap-1 text-sm"><PiggyBank className="h-4 w-4" />Taux d'épargne : {r.income ? `${r.rate.toFixed(0)} %` : "—"}</p>
             </div>
