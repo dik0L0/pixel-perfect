@@ -166,6 +166,10 @@ function SuivrePage() {
 
   const setGroup = (key: string, items: Line[]) => setS({ ...s, groups: s.groups.map((g) => (g.key === key ? { ...g, items } : g)) });
 
+  const restCount = useCountUp(r.rest);
+  const incomeCount = useCountUp(r.income);
+  const expenseCount = useCountUp(r.expense);
+
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
