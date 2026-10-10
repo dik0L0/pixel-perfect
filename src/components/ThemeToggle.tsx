@@ -6,7 +6,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   const [dark, setDark] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setDark(document.documentElement.classList.contains("dark"));
+    setDark(localStorage.getItem("dola-theme") !== "light");
   }, []);
 
   const toggle = () => {
