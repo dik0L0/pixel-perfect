@@ -71,7 +71,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" },
     ],
     scripts: [
-      { children: "try{if(localStorage.getItem('dola-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}" },
+      { children: "try{if(localStorage.getItem('dola-theme')!=='light')document.documentElement.classList.add('dark')}catch(e){document.documentElement.classList.add('dark')}" },
     ],
   }),
   shellComponent: RootShell,
@@ -99,7 +99,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   useEffect(() => {
-    if (localStorage.getItem("dola-theme") === "dark") document.documentElement.classList.add("dark");
+    if (localStorage.getItem("dola-theme") !== "light") document.documentElement.classList.add("dark");
     const { data } = supabase.auth.onAuthStateChange((event) => {
       if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
       router.invalidate();
