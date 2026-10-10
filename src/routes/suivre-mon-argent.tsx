@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
-import { Plus, Trash2, RotateCcw, TrendingUp, Wallet, PiggyBank, AlertTriangle } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Plus, Trash2, RotateCcw, TrendingUp, Wallet, PiggyBank, AlertTriangle, ChevronDown } from "lucide-react";
 import { SiteHeader } from "@/components/marketing";
 import { FullPageLoader } from "@/components/Spinner";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { fcfa } from "@/lib/finance";
@@ -50,6 +51,28 @@ const DEFAULT: () => State = () => ({
 
 const KEY = "dola-suivi-v1";
 
+function useCountUp(value: number, ms = 450) {
+  const [display, setDisplay] = useState(value);
+  const cur = useRef(value);
+  useEffect(() => {
+    const from = cur.current;
+    const to = value;
+    if (from === to) return;
+    const start = performance.now();
+    let raf = 0;
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - start) / ms);
+      const v = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+      cur.current = v;
+      setDisplay(v);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [value, ms]);
+  return display;
+}
+
 function AmountInput({ value, onChange }: { value: number; onChange: (n: number) => void }) {
   return (
     <div className="relative w-36 shrink-0">
@@ -76,8 +99,40 @@ function Rows({ items, onChange, addLabel }: { items: Line[]; onChange: (l: Line
   );
 }
 
+function GroupCard({ group, open, onToggle, onChange, index }: { group: Group; open: boolean; onToggle: () => void; onChange: (items: Line[]) => void; index: number }) {
+  const total = group.items.reduce((a, b) => a + b.amount, 0);
+  const filled = group.items.filter((i) => i.amount > 0).length;
+  return (
+    <div
+      className={cn(
+        "animate-rise overflow-hidden rounded-2xl border bg-card transition-colors",
+        open ? "border-primary/50 shadow-glow" : "hover:border-primary/30",
+      )}
+      style={{ animationDelay: `${index * 60}ms` }}
+    >
+      <button type="button" onClick={onToggle} className="flex w-full items-center gap-3 p-4 text-left">
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-muted text-xl">{group.emoji}</span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-semibold">{group.label}</span>
+          <span className="text-xs text-muted-foreground">{filled > 0 ? `${filled} dépense${filled > 1 ? "s" : ""}` : "Non renseigné"}</span>
+        </span>
+        <span className={cn("shrink-0 text-sm font-semibold", total > 0 ? "text-foreground" : "text-muted-foreground")}>{total > 0 ? fcfa(total) : "—"}</span>
+        <ChevronDown className={cn("h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300", open && "rotate-180 text-primary")} />
+      </button>
+      <div className="grid transition-[grid-template-rows] duration-300 ease-out" style={{ gridTemplateRows: open ? "1fr" : "0fr" }}>
+        <div className="overflow-hidden">
+          <div className="border-t px-4 pb-4 pt-3">
+            <Rows items={group.items} onChange={onChange} addLabel="Ajouter une dépense" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SuivrePage() {
   const [s, setS] = useState<State>(DEFAULT);
+  const [openKey, setOpenKey] = useState<string | null>("logement");
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     try { const raw = localStorage.getItem(KEY); if (raw) setS(JSON.parse(raw)); } catch { /* ignore */ }
@@ -111,6 +166,10 @@ function SuivrePage() {
 
   const setGroup = (key: string, items: Line[]) => setS({ ...s, groups: s.groups.map((g) => (g.key === key ? { ...g, items } : g)) });
 
+  const restCount = useCountUp(r.rest);
+  const incomeCount = useCountUp(r.income);
+  const expenseCount = useCountUp(r.expense);
+
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -120,28 +179,29 @@ function SuivrePage() {
 
         <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_380px]">
           <div className="space-y-5">
-            <section className="rounded-2xl border bg-card p-5">
+            <section className="animate-rise rounded-2xl border bg-card p-5" style={{ animationDelay: "0ms" }}>
               <h2 className="mb-3 text-lg font-semibold">💰 1. Mes revenus du mois</h2>
               <Rows items={s.incomes} onChange={(incomes) => setS({ ...s, incomes })} addLabel="Ajouter un revenu" />
             </section>
 
-            <section className="rounded-2xl border bg-card p-5">
+            <section className="animate-rise rounded-2xl border bg-card p-5" style={{ animationDelay: "80ms" }}>
               <h2 className="mb-1 text-lg font-semibold">🧾 2. Toutes mes dépenses</h2>
-              <p className="mb-4 text-sm text-muted-foreground">Laissez à 0 ce qui ne vous concerne pas. Renommez ou ajoutez des lignes librement.</p>
-              <div className="space-y-5">
-                {s.groups.map((g) => (
-                  <div key={g.key} className="rounded-xl bg-muted/40 p-4">
-                    <div className="mb-3 flex items-center justify-between">
-                      <h3 className="font-semibold">{g.emoji} {g.label}</h3>
-                      <span className="text-sm font-medium text-muted-foreground">{fcfa(g.items.reduce((a, b) => a + b.amount, 0))}</span>
-                    </div>
-                    <Rows items={g.items} onChange={(items) => setGroup(g.key, items)} addLabel="Ajouter une dépense" />
-                  </div>
+              <p className="mb-4 text-sm text-muted-foreground">Touchez une catégorie pour l'ouvrir. Laissez à 0 ce qui ne vous concerne pas.</p>
+              <div className="space-y-2.5">
+                {s.groups.map((g, i) => (
+                  <GroupCard
+                    key={g.key}
+                    group={g}
+                    index={i}
+                    open={openKey === g.key}
+                    onToggle={() => setOpenKey(openKey === g.key ? null : g.key)}
+                    onChange={(items) => setGroup(g.key, items)}
+                  />
                 ))}
               </div>
             </section>
 
-            <section className="rounded-2xl border bg-card p-5">
+            <section className="animate-rise rounded-2xl border bg-card p-5" style={{ animationDelay: "160ms" }}>
               <h2 className="mb-3 text-lg font-semibold">🎯 3. Mon objectif d'épargne (facultatif)</h2>
               <div className="flex items-center gap-2"><span className="flex-1 text-sm">Montant à atteindre</span><AmountInput value={s.goal} onChange={(goal) => setS({ ...s, goal })} /></div>
             </section>
@@ -149,13 +209,13 @@ function SuivrePage() {
             <Button variant="outline" className="rounded-xl" onClick={() => { if (confirm("Tout effacer ?")) setS(DEFAULT()); }}><RotateCcw className="mr-2 h-4 w-4" />Tout effacer</Button>
           </div>
 
-          <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
+          <aside className="animate-rise space-y-4 lg:sticky lg:top-20 lg:self-start" style={{ animationDelay: "120ms" }}>
             <div className="rounded-2xl bg-sidebar p-5 text-sidebar-foreground">
               <p className="text-sm opacity-80">Reste à la fin du mois</p>
-              <p className={`font-display text-3xl font-bold ${r.rest < 0 ? "text-destructive" : ""}`}>{fcfa(r.rest)}</p>
+              <p className={`font-display text-3xl font-bold ${r.rest < 0 ? "text-destructive" : ""}`}>{fcfa(restCount)}</p>
               <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                <div><p className="flex items-center gap-1 opacity-80"><Wallet className="h-4 w-4" />Revenus</p><p className="font-semibold">{fcfa(r.income)}</p></div>
-                <div><p className="flex items-center gap-1 opacity-80"><TrendingUp className="h-4 w-4" />Dépenses</p><p className="font-semibold">{fcfa(r.expense)}</p></div>
+                <div><p className="flex items-center gap-1 opacity-80"><Wallet className="h-4 w-4" />Revenus</p><p className="font-semibold">{fcfa(incomeCount)}</p></div>
+                <div><p className="flex items-center gap-1 opacity-80"><TrendingUp className="h-4 w-4" />Dépenses</p><p className="font-semibold">{fcfa(expenseCount)}</p></div>
               </div>
               <p className="mt-3 flex items-center gap-1 text-sm"><PiggyBank className="h-4 w-4" />Taux d'épargne : {r.income ? `${r.rate.toFixed(0)} %` : "—"}</p>
             </div>
@@ -167,7 +227,7 @@ function SuivrePage() {
                   {r.groups.filter((g) => g.total > 0).map((g) => (
                     <div key={g.key}>
                       <div className="flex justify-between text-sm"><span>{g.emoji} {g.label}</span><span className="font-medium">{fcfa(g.total)}</span></div>
-                      <div className="mt-1 h-2 rounded-full bg-muted"><div className="h-2 rounded-full bg-primary" style={{ width: `${(g.total / r.expense) * 100}%` }} /></div>
+                      <div className="mt-1 h-2 overflow-hidden rounded-full bg-muted"><div className="h-2 rounded-full bg-primary transition-all duration-500" style={{ width: `${(g.total / r.expense) * 100}%` }} /></div>
                     </div>
                   ))}
                 </div>
