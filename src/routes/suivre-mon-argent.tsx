@@ -51,6 +51,28 @@ const DEFAULT: () => State = () => ({
 
 const KEY = "dola-suivi-v1";
 
+function useCountUp(value: number, ms = 450) {
+  const [display, setDisplay] = useState(value);
+  const cur = useRef(value);
+  useEffect(() => {
+    const from = cur.current;
+    const to = value;
+    if (from === to) return;
+    const start = performance.now();
+    let raf = 0;
+    const tick = (t: number) => {
+      const p = Math.min(1, (t - start) / ms);
+      const v = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+      cur.current = v;
+      setDisplay(v);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [value, ms]);
+  return display;
+}
+
 function AmountInput({ value, onChange }: { value: number; onChange: (n: number) => void }) {
   return (
     <div className="relative w-36 shrink-0">
