@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
-import { Plus, Trash2, RotateCcw, TrendingUp, Wallet, PiggyBank, AlertTriangle } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Plus, Trash2, RotateCcw, TrendingUp, Wallet, PiggyBank, AlertTriangle, ChevronDown } from "lucide-react";
 import { SiteHeader } from "@/components/marketing";
 import { FullPageLoader } from "@/components/Spinner";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { fcfa } from "@/lib/finance";
