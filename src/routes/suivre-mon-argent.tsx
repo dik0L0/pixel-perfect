@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Plus, Trash2, RotateCcw, TrendingUp, Wallet, PiggyBank, AlertTriangle } from "lucide-react";
 import { SiteHeader } from "@/components/marketing";
+import { FullPageLoader } from "@/components/Spinner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { fcfa } from "@/lib/finance";
@@ -10,10 +11,7 @@ export const Route = createFileRoute("/suivre-mon-argent")({
   // Petit chargement volontaire pour que le loader circulaire apparaisse.
   pendingMs: 0,
   loader: () => new Promise((r) => setTimeout(r, 600)),
-  pendingComponent: () => {
-    const [FullPageLoader] = [require_loader()];
-    return <FullPageLoader />;
-  },
+  pendingComponent: () => <FullPageLoader />,
   head: () => ({
     meta: [
       { title: "Suivre mon argent — DOLA" },
