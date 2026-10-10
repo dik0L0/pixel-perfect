@@ -223,7 +223,7 @@ function SuivrePage() {
                   {r.groups.filter((g) => g.total > 0).map((g) => (
                     <div key={g.key}>
                       <div className="flex justify-between text-sm"><span>{g.emoji} {g.label}</span><span className="font-medium">{fcfa(g.total)}</span></div>
-                      <div className="mt-1 h-2 rounded-full bg-muted"><div className="h-2 rounded-full bg-primary" style={{ width: `${(g.total / r.expense) * 100}%` }} /></div>
+                      <div className="mt-1 h-2 overflow-hidden rounded-full bg-muted"><div className="h-2 rounded-full bg-primary transition-all duration-500" style={{ width: `${(g.total / r.expense) * 100}%` }} /></div>
                     </div>
                   ))}
                 </div>
