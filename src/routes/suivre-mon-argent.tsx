@@ -175,28 +175,29 @@ function SuivrePage() {
 
         <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_380px]">
           <div className="space-y-5">
-            <section className="rounded-2xl border bg-card p-5">
+            <section className="animate-rise rounded-2xl border bg-card p-5" style={{ animationDelay: "0ms" }}>
               <h2 className="mb-3 text-lg font-semibold">💰 1. Mes revenus du mois</h2>
               <Rows items={s.incomes} onChange={(incomes) => setS({ ...s, incomes })} addLabel="Ajouter un revenu" />
             </section>
 
-            <section className="rounded-2xl border bg-card p-5">
+            <section className="animate-rise rounded-2xl border bg-card p-5" style={{ animationDelay: "80ms" }}>
               <h2 className="mb-1 text-lg font-semibold">🧾 2. Toutes mes dépenses</h2>
-              <p className="mb-4 text-sm text-muted-foreground">Laissez à 0 ce qui ne vous concerne pas. Renommez ou ajoutez des lignes librement.</p>
-              <div className="space-y-5">
-                {s.groups.map((g) => (
-                  <div key={g.key} className="rounded-xl bg-muted/40 p-4">
-                    <div className="mb-3 flex items-center justify-between">
-                      <h3 className="font-semibold">{g.emoji} {g.label}</h3>
-                      <span className="text-sm font-medium text-muted-foreground">{fcfa(g.items.reduce((a, b) => a + b.amount, 0))}</span>
-                    </div>
-                    <Rows items={g.items} onChange={(items) => setGroup(g.key, items)} addLabel="Ajouter une dépense" />
-                  </div>
+              <p className="mb-4 text-sm text-muted-foreground">Touchez une catégorie pour l'ouvrir. Laissez à 0 ce qui ne vous concerne pas.</p>
+              <div className="space-y-2.5">
+                {s.groups.map((g, i) => (
+                  <GroupCard
+                    key={g.key}
+                    group={g}
+                    index={i}
+                    open={openKey === g.key}
+                    onToggle={() => setOpenKey(openKey === g.key ? null : g.key)}
+                    onChange={(items) => setGroup(g.key, items)}
+                  />
                 ))}
               </div>
             </section>
 
-            <section className="rounded-2xl border bg-card p-5">
+            <section className="animate-rise rounded-2xl border bg-card p-5" style={{ animationDelay: "160ms" }}>
               <h2 className="mb-3 text-lg font-semibold">🎯 3. Mon objectif d'épargne (facultatif)</h2>
               <div className="flex items-center gap-2"><span className="flex-1 text-sm">Montant à atteindre</span><AmountInput value={s.goal} onChange={(goal) => setS({ ...s, goal })} /></div>
             </section>
