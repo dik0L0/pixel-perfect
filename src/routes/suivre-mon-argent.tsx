@@ -99,6 +99,37 @@ function Rows({ items, onChange, addLabel }: { items: Line[]; onChange: (l: Line
   );
 }
 
+function GroupCard({ group, open, onToggle, onChange, index }: { group: Group; open: boolean; onToggle: () => void; onChange: (items: Line[]) => void; index: number }) {
+  const total = group.items.reduce((a, b) => a + b.amount, 0);
+  const filled = group.items.filter((i) => i.amount > 0).length;
+  return (
+    <div
+      className={cn(
+        "animate-rise overflow-hidden rounded-2xl border bg-card transition-colors",
+        open ? "border-primary/50 shadow-glow" : "hover:border-primary/30",
+      )}
+      style={{ animationDelay: `${index * 60}ms` }}
+    >
+      <button type="button" onClick={onToggle} className="flex w-full items-center gap-3 p-4 text-left">
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-muted text-xl">{group.emoji}</span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-semibold">{group.label}</span>
+          <span className="text-xs text-muted-foreground">{filled > 0 ? `${filled} dépense${filled > 1 ? "s" : ""}` : "Non renseigné"}</span>
+        </span>
+        <span className={cn("shrink-0 text-sm font-semibold", total > 0 ? "text-foreground" : "text-muted-foreground")}>{total > 0 ? fcfa(total) : "—"}</span>
+        <ChevronDown className={cn("h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300", open && "rotate-180 text-primary")} />
+      </button>
+      <div className="grid transition-[grid-template-rows] duration-300 ease-out" style={{ gridTemplateRows: open ? "1fr" : "0fr" }}>
+        <div className="overflow-hidden">
+          <div className="border-t px-4 pb-4 pt-3">
+            <Rows items={group.items} onChange={onChange} addLabel="Ajouter une dépense" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SuivrePage() {
   const [s, setS] = useState<State>(DEFAULT);
   const [loaded, setLoaded] = useState(false);
