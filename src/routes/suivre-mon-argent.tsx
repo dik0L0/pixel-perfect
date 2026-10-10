@@ -132,6 +132,7 @@ function GroupCard({ group, open, onToggle, onChange, index }: { group: Group; o
 
 function SuivrePage() {
   const [s, setS] = useState<State>(DEFAULT);
+  const [openKey, setOpenKey] = useState<string | null>("logement");
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     try { const raw = localStorage.getItem(KEY); if (raw) setS(JSON.parse(raw)); } catch { /* ignore */ }
