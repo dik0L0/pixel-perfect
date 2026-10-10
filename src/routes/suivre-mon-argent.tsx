@@ -10,6 +10,10 @@ export const Route = createFileRoute("/suivre-mon-argent")({
   // Petit chargement volontaire pour que le loader circulaire apparaisse.
   pendingMs: 0,
   loader: () => new Promise((r) => setTimeout(r, 600)),
+  pendingComponent: () => {
+    const [FullPageLoader] = [require_loader()];
+    return <FullPageLoader />;
+  },
   head: () => ({
     meta: [
       { title: "Suivre mon argent — DOLA" },
