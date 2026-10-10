@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { fcfa } from "@/lib/finance";
 
 export const Route = createFileRoute("/suivre-mon-argent")({
+  // Petit chargement volontaire pour que le loader circulaire apparaisse.
+  loader: () => new Promise((r) => setTimeout(r, 500)),
   head: () => ({
     meta: [
       { title: "Suivre mon argent — DOLA" },
